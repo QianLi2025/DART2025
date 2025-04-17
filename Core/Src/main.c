@@ -33,6 +33,7 @@
 #include "struct_typedef.h"
 #include "bsp_can.h"
 #include "dart.h"
+#include "minipc_protocol.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -73,7 +74,7 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   fp32 motor_pos_pid_3508[3] = {1,0,1};
   fp32 motor_speed_pid_2006[3]={10,0,0};
   fp32 motor_pos_pid_2006[3] = {1,0,1};
-  fp32 motor_speed_pid_6020[3]={70,0,1.0f};
+  fp32 motor_speed_pid_6020[3]={65,0,1.0f};
   fp32 motor_pos_pid_6020[3] = {70,0.8,0};
   motorInit(&D2006_motor1, D2006_MOTOR1_ID, 0x200, 0xFFF, 0x200);//推杆电机
   motorInit(&D2006_motor2, D2006_MOTOR2_ID, 0x200, 0xFFF, 0x200);//弹夹电机
@@ -92,8 +93,23 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   pid_init(&D3508_motor2.motor_pos_pid, motor_pos_pid_3508, 10000, 10000); //3508电机速位置PID
   //can初始化
   can_filter_init();//对can1 can2的过滤器进行配置
+  //飞镖创建、发射任务设置
+  roket peipei={.shootSpeed=3000,.yawPlace=600};
+  roket linGanGu={.shootSpeed=3000,.yawPlace=900};
+  roket byd={.shootSpeed=3000,.yawPlace=600};
+  roket myb={.shootSpeed=3000,.yawPlace=900};
+  shootTaskInit(&peipei,&linGanGu,&byd,&myb);//按照1、2、3、4发射顺序填入飞镖
+  //推杆电机和yaw电机初始化，方便限制电机动作
+  while(!pushYawInit()){DWTRefreshTimeMs();//更新毫秒计时
+    dartSysStateCheck();//各类限位状态查询
+    checkControlMode();//遥控器选择控制模式
+    minipc_upgrade(&minipc);//更新miniPC数据
+    yawPlaceRefresh();//更新yaw电机数据
+    pushPlaceRefreshSpeedy();//更新push电机数据
+		calAndSendMotor();
+		HAL_Delay(1);}
   //其它初始化
-  //yawInit();
+
 }
 /* USER CODE END PFP */
 
@@ -147,6 +163,9 @@ int main(void)
     DWTRefreshTimeMs();//更新毫秒计时
     dartSysStateCheck();//各类限位状态查询
     checkControlMode();//遥控器选择控制模式
+    minipc_upgrade(&minipc);//更新miniPC数据
+    yawPlaceRefresh();//更新yaw电机数据
+    pushPlaceRefreshSpeedy();//更新push电机数据
 
     switch (mode)
     {

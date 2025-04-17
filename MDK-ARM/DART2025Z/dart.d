@@ -34,4 +34,8 @@ dart2025z/dart.o: ..\SYS\dart.c ..\SYS\dart.h ..\Bsp\struct_typedef.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h \
   ..\App\motorUsr.h ..\App\PID.h ..\App\can_user.h \
   ..\App\remote_control.h ..\Bsp\bsp_rc.h \
-  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\stdlib.h ..\App\DWT.h
+  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\stdlib.h ..\App\DWT.h \
+  ..\App\minipc_protocol.h \
+  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\string.h \
+  ..\Bsp\CRC8_CRC16.h \
+  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\math.h

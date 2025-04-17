@@ -40,4 +40,6 @@ dart2025z/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\string.h \
   ..\Core\Inc\gpio.h ..\App\remote_control.h ..\Bsp\struct_typedef.h \
   ..\Bsp\bsp_rc.h ..\App\motor.h ..\App\PID.h ..\App\DWT.h \
-  ..\App\motorUsr.h ..\Bsp\bsp_can.h ..\SYS\dart.h ..\App\can_user.h
+  ..\App\motorUsr.h ..\Bsp\bsp_can.h ..\SYS\dart.h ..\App\can_user.h \
+  ..\App\minipc_protocol.h ..\Bsp\CRC8_CRC16.h \
+  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\math.h
