@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "minipc_protocol.h": "c",
+        "struct_typedef.h": "c",
+        "motorusr.h": "c",
+        "main.h": "c",
+        "gpio.h": "c",
+        "pid.h": "c"
+    }
+}
