@@ -42,4 +42,9 @@ dart2025z/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Bsp\bsp_rc.h ..\App\motor.h ..\App\PID.h ..\App\DWT.h \
   ..\App\motorUsr.h ..\Bsp\bsp_can.h ..\SYS\dart.h ..\App\can_user.h \
   ..\App\minipc_protocol.h ..\Bsp\CRC8_CRC16.h \
-  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\math.h
+  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\math.h \
+  ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h

@@ -10,6 +10,9 @@
 #include "DWT.h"
 #include "minipc_protocol.h"
 #include "math.h"
+#include "stdio.h"
+#include "string.h"
+#include "usbd_cdc_if.h"
 
 #pragma packed(1)
 typedef struct{

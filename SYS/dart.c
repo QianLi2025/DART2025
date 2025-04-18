@@ -10,7 +10,7 @@ dartSysState_t dartState={
                         .magazineCurrentLimitPushed=0,
                         .magazineSwitch=0,
                         .needJiaoZhun=1,
-                        .semiAutoState=0};//系统状态
+                        .semiAutoState=1};//系统状态
 roketShootingTaskT roketShootTask={
                         .shootPushPlace={0,0,0,0},
                         .shootPushSpeed={0,0,0,0},
@@ -51,7 +51,7 @@ void limitProtection(){
         D6020_motor1.set_voltage=pid_calc(&D6020_motor1.motor_speed_pid,D6020_motor1.target_speed,D6020_motor1.rotor_speed);
     }  
         break;
-    case 2:
+    case 2://yaw位置限位
     if(D6020_motor1.set_voltage<0||D6020_motor1.target_speed<0){
         D6020_motor1.target_speed=0;
         pidReset(&D6020_motor1.motor_speed_pid);
@@ -117,7 +117,7 @@ void dartSysStateCheck(void)
     int16_t yawAng = D6020_motor1.absolute_angle;
     if (yawAng > 3000) {yawPushed = 2;}
     dartState.yawLimitPushed = yawPushed;
-    // 5. 只要 yawLimitPushed 非 0，就清零绝对角度
+    // 5. 只要 yawLimitPushed 为1（触发轻触开关），就清零绝对角度
     if (yawPushed==1) {D6020_motor1.absolute_angle = 0;}
     // 6. 如果下限位触发，则清零推杆电机角度
     if (dartState.pushLowerLimitPushed) {D2006_motor1.absolute_angle = 0;}
@@ -136,12 +136,12 @@ void shootingCircleSetSpeed(int16_t speed){D3508_motor1.target_speed=-speed;D350
 //对推杆电机和yaw电机复位
 uint8_t pushYawInit(){
    dartSysStateCheck();
-   if(!dartState.pushLowerLimitPushed){pushSetSpeed(-30000);}else{pushStop();}
-   if(!dartState.yawLimitPushed){yawSetSpeed(-8000);}else{yawStop();}
+   if(dartState.pushLowerLimitPushed!=1){pushSetSpeed(-30000);}else{pushStop();}
+   if(dartState.yawLimitPushed!=1){yawSetSpeed(-8000);}else{yawStop();}
    if(dartState.pushLowerLimitPushed && dartState.yawLimitPushed){
        pushStop();yawStop();
-       D6020_motor1.absolute_angle=0;D6020_motor1.last_angle=D6020_motor1.rotor_angle;//为计算绝对距离做准备
-       D2006_motor1.absolute_angle=0;D2006_motor1.last_angle=DWTGetTimeMs();//为计算绝对距离做准备
+       D6020_motor1.last_angle=D6020_motor1.rotor_angle;//为计算绝对距离做准备
+       D2006_motor1.last_angle=DWTGetTimeMs();//为计算绝对距离做准备
        dartState.needJiaoZhun=0;
        return 1;
    }
@@ -169,6 +169,11 @@ void pushPlaceRefreshSpeedy(){
 uint8_t pushSetPlace(int16_t position){
     if(D2006_motor1.absolute_angle<position){pushSetSpeed(20000);return 0;}
     else{pushSetSpeed(0);return 1;}
+}
+//令推杆电机回到0位置
+uint8_t pushGoBack(){
+    if(dartState.pushLowerLimitPushed){pushStop();return 1;}
+    else{pushSetSpeed(-20000);return 0;}
 }
 //对yaw电机位置进行设置，使用位置环计算yaw电机
 uint8_t yawSetPlace(int16_t position){
@@ -200,8 +205,9 @@ void magazineSwitch(uint8_t switchTo){
 //发射准备函数，可以将弹夹、yaw、推杆置到指定位置，待完成后跳转
 uint8_t shootPrepare(uint8_t shootingMagazine,int16_t yawSet,int16_t pushSet){
     shootingCircleSetSpeed(3000);
-    magazineSwitch(shootingMagazine);//使用哪组弹夹射击？
-	yawSetPlace(yawSet);//yaw轴预置位是？
+    yawSetPlace(yawSet);//yaw轴预置位是？
+    if(dartState.pushLowerLimitPushed){magazineSwitch(shootingMagazine);}//使用哪组弹夹射击？
+    else{pushGoBack();}//推杆归位
     if(dartState.magazineSwitch==10*shootingMagazine+1){//若弹夹完成归位
         if(pushSetPlace(pushSet))//推杆预置位是？若推杆完成归位，则返回真
         {
@@ -226,6 +232,8 @@ uint8_t shootRoket(uint8_t shootingNum,uint8_t refreeNeed){
     return 0;
 }
 
+static char word_buf[64];
+
 void manualTask(){
     yawPlaceRefresh();
     dartState.needJiaoZhun=1;
@@ -242,6 +250,8 @@ void manualTask(){
        dartState.magazineSwitch=1;
     }
     magazineSwitch(dartState.magazineSwitch);
+//    sprintf(word_buf,"%.4f,%d,%d\n",DWTGetTimeMs(),D3508_motor1.rotor_speed,D3508_motor2.rotor_speed);
+//    CDC_Transmit_FS((uint8_t*)word_buf,strlen(word_buf));
 }
 
 void semiAutoTask(){
@@ -253,9 +263,12 @@ void semiAutoTask(){
         {
         
         case 0: break;//调试模式
-        case 1: if(shootPrepare(1,800,10)){dartState.semiAutoState=2;}break;//第一组弹夹发射准备
+        case 1: if(shootPrepare(1,roketShootTask.shootYawPlace[0],500)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=2;}break;//第一组弹夹发射准备
         case 2: if(shootRoket(1,0)){dartState.semiAutoState=3;}; break;//第一个飞镖发射
         case 3: if(shootRoket(2,0)){dartState.semiAutoState=4;}; break;//第二个飞镖发射
+        case 4: if(shootPrepare(2,roketShootTask.shootYawPlace[2],500)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=5;} break;//第二组弹夹发射准备
+        case 5: if(shootRoket(3,0)){dartState.semiAutoState=6;}; break;//第三个飞镖发射
+        case 6: if(shootRoket(4,0)){dartState.semiAutoState=7;}; break;//第四个飞镖发射
         default:
             break;
         }

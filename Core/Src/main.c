@@ -74,7 +74,7 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   fp32 motor_pos_pid_3508[3] = {1,0,1};
   fp32 motor_speed_pid_2006[3]={10,0,0};
   fp32 motor_pos_pid_2006[3] = {1,0,1};
-  fp32 motor_speed_pid_6020[3]={65,0,1.0f};
+  fp32 motor_speed_pid_6020[3]={65,1.0f,0};
   fp32 motor_pos_pid_6020[3] = {70,0.8,0};
   motorInit(&D2006_motor1, D2006_MOTOR1_ID, 0x200, 0xFFF, 0x200);//推杆电机
   motorInit(&D2006_motor2, D2006_MOTOR2_ID, 0x200, 0xFFF, 0x200);//弹夹电机
