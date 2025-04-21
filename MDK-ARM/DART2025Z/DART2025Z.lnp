@@ -33,6 +33,7 @@
 "dart2025z\dwt.o"
 "dart2025z\minipc_protocol.o"
 "dart2025z\motorusr.o"
+"dart2025z\referee.o"
 "dart2025z\bsp_can.o"
 "dart2025z\bsp_rc.o"
 "dart2025z\struct_typedef.o"

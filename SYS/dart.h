@@ -13,6 +13,8 @@
 #include "stdio.h"
 #include "string.h"
 #include "usbd_cdc_if.h"
+#include "usart.h"
+#include "referee.h"
 
 #pragma packed(1)
 typedef struct{
@@ -33,6 +35,7 @@ typedef struct
     uint16_t shootSpeed;//发射速度
     uint16_t pushSpeed;//推杆速度
     uint16_t yawPlace;//yaw位置
+    uint16_t yawDelta;//miniPC修正后的yaw轴的修正量
 }roket;
 typedef struct //对于一次发射，将其视为具有三个参数的任务。这三个参数为推杆位置、推杆速度和发射速度。实际建议只是用推杆置位和发射速度作为参数。不考虑推杆速度
 {
@@ -40,6 +43,7 @@ typedef struct //对于一次发射，将其视为具有三个参数的任务。
     uint16_t shootPushSpeed[4];
     uint16_t shootSpeed[4];
     uint16_t shootYawPlace[4];
+    uint16_t miniPcYawDelta[4];
 }roketShootingTaskT;
 
 #pragma packed()

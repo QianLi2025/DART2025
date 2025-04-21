@@ -15,20 +15,25 @@ roketShootingTaskT roketShootTask={
                         .shootPushPlace={0,0,0,0},
                         .shootPushSpeed={0,0,0,0},
                         .shootSpeed={0,0,0,0},
-                        .shootYawPlace={0,0,0,0}};//发射任务                      
+                        .shootYawPlace={0,0,0,0},
+                        .miniPcYawDelta={0,0,0,0}};//发射任务                      
 void shootTaskInit(roket *r1,roket *r2,roket *r3,roket *r4){
     roketShootTask.shootSpeed[0]=r1->shootSpeed;
     roketShootTask.shootSpeed[1]=r2->shootSpeed;
     roketShootTask.shootSpeed[2]=r3->shootSpeed;
     roketShootTask.shootSpeed[3]=r4->shootSpeed;
-    roketShootTask.shootPushPlace[0]=1000;
-    roketShootTask.shootPushPlace[1]=2000;
-    roketShootTask.shootPushPlace[2]=1000;
-    roketShootTask.shootPushPlace[3]=2000;
+    roketShootTask.shootPushPlace[0]=4100;
+    roketShootTask.shootPushPlace[1]=5700;
+    roketShootTask.shootPushPlace[2]=4100;
+    roketShootTask.shootPushPlace[3]=5700;
     roketShootTask.shootYawPlace[0]=r1->yawPlace;
     roketShootTask.shootYawPlace[1]=r2->yawPlace;
     roketShootTask.shootYawPlace[2]=r3->yawPlace;
     roketShootTask.shootYawPlace[3]=r4->yawPlace;
+    roketShootTask.miniPcYawDelta[0]=r1->yawDelta;
+    roketShootTask.miniPcYawDelta[1]=r2->yawDelta;
+    roketShootTask.miniPcYawDelta[2]=r3->yawDelta;
+    roketShootTask.miniPcYawDelta[3]=r4->yawDelta;
 }
 
 void checkControlMode(){
@@ -80,11 +85,14 @@ void calAndSendMotor(){//计算和发送电机控制量
     D3508_motor1.set_voltage=pid_calc(&D3508_motor1.motor_speed_pid, D3508_motor1.target_speed, D3508_motor1.rotor_speed);
     D3508_motor2.set_voltage=pid_calc(&D3508_motor2.motor_speed_pid, D3508_motor2.target_speed, D3508_motor2.rotor_speed);
     //6020电机可能进行位置环计算，于是进行逻辑判断
-    if(D6020_motor1.target_pos==-255){D6020_motor1.set_voltage=pid_calc(&D6020_motor1.motor_speed_pid, D6020_motor1.target_speed, D6020_motor1.rotor_speed);}
-    else{
-        D6020_motor1.target_speed=-pid_calc(&D6020_motor1.motor_pos_pid,D6020_motor1.target_pos,D6020_motor1.absolute_angle);
-        D6020_motor1.set_voltage=pid_calc(&D6020_motor1.motor_speed_pid,D6020_motor1.target_speed,D6020_motor1.rotor_speed);
+    switch (D6020_motor1.target_pos)
+    {
+        case -255:break;
+        case -244:D6020_motor1.target_speed=pid_calc(&D6020_motor1.motor_pos_pixel_pid,D6020_motor1.target_pixel,D6020_motor1.nowPixel);break;
+        default:  D6020_motor1.target_speed=-pid_calc(&D6020_motor1.motor_pos_pid,D6020_motor1.target_pos,D6020_motor1.absolute_angle);break;
     }
+    D6020_motor1.set_voltage=pid_calc(&D6020_motor1.motor_speed_pid, D6020_motor1.target_speed, D6020_motor1.rotor_speed);
+        
     limitProtection();//各个电机保护，这个函数若修改，可以减少计算量
     can2_cmd_motor(1,0,0,0,D6020_motor1.set_voltage);
     can1_cmd_motor(0,D3508_motor1.set_voltage,D3508_motor2.set_voltage,D2006_motor1.set_voltage,D2006_motor2.set_voltage);
@@ -98,6 +106,18 @@ uint8_t pushLowerLimitCheck(){//下限位检测
 }
 uint8_t yawLimitCheck(){//yaw限位检测
     return HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_7);
+}
+
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
+    if(huart->Instance==UART5)
+	{
+		//把收到的一包数据通过串口回传
+		HAL_UART_Transmit(&huart5,rfDataBuf,Size,0xff);
+        referee_fbkdata(&rfData,rfDataBuf);
+		//再次开启空闲中断接收，不然只会接收一次数据
+		HAL_UARTEx_ReceiveToIdle_IT(&huart5,rfDataBuf,150);
+	}
+
 }
 
 //对飞镖系统各类状态进行查询
@@ -175,10 +195,23 @@ uint8_t pushGoBack(){
     if(dartState.pushLowerLimitPushed){pushStop();return 1;}
     else{pushSetSpeed(-20000);return 0;}
 }
+
+uint8_t pushGoTop(int16_t speed){
+    if(dartState.pushUpperLimitPushed){pushStop();return 1;}
+    else{pushSetSpeed(speed);return 0;}
+}
 //对yaw电机位置进行设置，使用位置环计算yaw电机
 uint8_t yawSetPlace(int16_t position){
+    D6020_motor1.target_pos=position;
     if(fabs(D6020_motor1.absolute_angle-position)<1){return 1;}
-    else{D6020_motor1.target_pos=position;return 0;}
+    else{return 0;}
+}
+//通过视觉的方式计算yaw轴的位置
+uint8_t yawSetPlaceVisual(int16_t yawDelta){
+    D6020_motor1.target_pos=-244;
+    D6020_motor1.nowPixel=minipc.minipc2mcu.distance;
+    D6020_motor1.target_pixel=-yawDelta;
+    return (abs(D6020_motor1.nowPixel+yawDelta)<=2) ? 1:0;
 }
 //弹夹切换函数，1代表靠右侧弹夹，2代表靠左侧弹夹
 void magazineSwitch(uint8_t switchTo){
@@ -221,12 +254,18 @@ uint8_t shootRoket(uint8_t shootingNum,uint8_t refreeNeed){
     // 缓存全局数组指针，减少后续多次寻址
     const uint16_t *speedArr    = roketShootTask.shootSpeed;
     const uint16_t *yawPlaceArr = roketShootTask.shootYawPlace;
+    const uint16_t *yawDeltaArr = roketShootTask.miniPcYawDelta;
     const uint16_t *pushPlaceArr= roketShootTask.shootPushPlace;
     shootingCircleSetSpeed(speedArr[idx]);
     if(!refreeNeed){//是否需要考虑裁判系统，待拓展
-        if(minipc.no_data_time>5000){//判定miniPC是否离线,若离线则不调整
+        if(minipc.no_data_time>5000||minipc.minipc2mcu.distance==10000){//判定miniPC是否离线,若离线则不调整
             //先调整yaw，再调整推杆，成功则返回1
-            return ( yawSetPlace(yawPlaceArr[idx]) &&pushSetPlace(pushPlaceArr[idx]) ) ? 1 : 0;
+            if(idx==0||idx==2){return ( yawSetPlace(yawPlaceArr[idx]) &&pushSetPlace(pushPlaceArr[idx]) ) ? 1 : 0;}
+            else if(idx==1||idx==3){return ( yawSetPlace(yawPlaceArr[idx]) &&pushGoTop(20000) ) ? 1 : 0;}
+        }
+        else if(minipc.no_data_time<100){//minipc没离线，使用minipc校准yaw轴
+            if(idx==0||idx==2){return ( yawSetPlaceVisual(yawDeltaArr[idx]) &&pushSetPlace(pushPlaceArr[idx]) ) ? 1 : 0;}
+            else if(idx==1||idx==3){return ( yawSetPlaceVisual(yawDeltaArr[idx]) &&pushGoTop(20000) ) ? 1 : 0;}
         }
     }
     return 0;
@@ -242,16 +281,17 @@ void manualTask(){
     int16_t magazineSpeed=2*rc_ctrl.rc.ch[0];//右左右
     if(abs(yawSpeed)>500){yawSetSpeed(yawSpeed);}else{yawStop();}
     if(abs(pushSpeed)>500){pushSetSpeed(pushSpeed);}else{pushStop();}
-    if(rc_ctrl.rc.s[0]==3){shootingCircleSetSpeed(3000);}else(shootingCircleStop());
-    if(magazineSpeed<-500){//切换到弹夹2
-        dartState.magazineSwitch=2;
+    if(rc_ctrl.rc.s[0]==3){shootingCircleSetSpeed(400);}else if(rc_ctrl.rc.s[0]==2){shootingCircleSetSpeed(-400);}else(shootingCircleStop());
+    if(magazineSpeed<-500){//切换到弹夹1
+        dartState.magazineSwitch=1;
     }
-    else if (magazineSpeed>500){//切换到弹夹1
-       dartState.magazineSwitch=1;
+    else if (magazineSpeed>500){//切换到弹夹2
+       dartState.magazineSwitch=2;
     }
     magazineSwitch(dartState.magazineSwitch);
-//    sprintf(word_buf,"%.4f,%d,%d\n",DWTGetTimeMs(),D3508_motor1.rotor_speed,D3508_motor2.rotor_speed);
-//    CDC_Transmit_FS((uint8_t*)word_buf,strlen(word_buf));
+
+    // sprintf(word_buf,"%.4f,%d,%d\n",DWTGetTimeMs(),D3508_motor1.rotor_speed,D3508_motor2.rotor_speed);
+    // CDC_Transmit_FS((uint8_t*)word_buf,strlen(word_buf));
 }
 
 void semiAutoTask(){
@@ -263,11 +303,11 @@ void semiAutoTask(){
         {
         
         case 0: break;//调试模式
-        case 1: if(shootPrepare(1,roketShootTask.shootYawPlace[0],500)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=2;}break;//第一组弹夹发射准备
-        case 2: if(shootRoket(1,0)){dartState.semiAutoState=3;}; break;//第一个飞镖发射
+        case 1: if(shootPrepare(1,roketShootTask.shootYawPlace[0],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=2;}break;//第一组弹夹发射准备
+        case 2: if(shootRoket(1,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=3;}; break;//第一个飞镖发射
         case 3: if(shootRoket(2,0)){dartState.semiAutoState=4;}; break;//第二个飞镖发射
-        case 4: if(shootPrepare(2,roketShootTask.shootYawPlace[2],500)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=5;} break;//第二组弹夹发射准备
-        case 5: if(shootRoket(3,0)){dartState.semiAutoState=6;}; break;//第三个飞镖发射
+        case 4: if(shootPrepare(2,roketShootTask.shootYawPlace[2],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=5;} break;//第二组弹夹发射准备
+        case 5: if(shootRoket(3,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=6;}; break;//第三个飞镖发射
         case 6: if(shootRoket(4,0)){dartState.semiAutoState=7;}; break;//第四个飞镖发射
         default:
             break;

@@ -5,6 +5,7 @@
         "motorusr.h": "c",
         "main.h": "c",
         "gpio.h": "c",
-        "pid.h": "c"
+        "pid.h": "c",
+        "referee.h": "c"
     }
 }

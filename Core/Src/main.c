@@ -34,6 +34,7 @@
 #include "bsp_can.h"
 #include "dart.h"
 #include "minipc_protocol.h"
+#include "referee.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -75,7 +76,8 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   fp32 motor_speed_pid_2006[3]={10,0,0};
   fp32 motor_pos_pid_2006[3] = {1,0,1};
   fp32 motor_speed_pid_6020[3]={65,1.0f,0};
-  fp32 motor_pos_pid_6020[3] = {70,0.8,0};
+  fp32 motor_pos_pid_6020[3] = {70,0.8f,0};
+  fp32 motor_pos_pixel_pid_6020[3]={5,0,0};
   motorInit(&D2006_motor1, D2006_MOTOR1_ID, 0x200, 0xFFF, 0x200);//推杆电机
   motorInit(&D2006_motor2, D2006_MOTOR2_ID, 0x200, 0xFFF, 0x200);//弹夹电机
   motorInit(&D3508_motor1, D3508_MOTOR1_ID, 0x200, 0xFFF, 0x200);//摩擦轮
@@ -83,6 +85,7 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   motorInit(&D6020_motor1, D6020_MOTOR1_ID, 0x2FE, 0x2FF, 0x204);//YAW电机
   pid_init(&D6020_motor1.motor_speed_pid, motor_speed_pid_6020, 24000, 24000);  //YAW电机速度PID
   pid_init(&D6020_motor1.motor_pos_pid, motor_pos_pid_6020, 400, 400);  //YAW电机位置PID
+  pid_init(&D6020_motor1.motor_pos_pixel_pid,motor_pos_pixel_pid_6020,400,400);//yaw电机视觉调整用位置pid
   pid_init(&D2006_motor1.motor_speed_pid, motor_speed_pid_2006, 16000, 16000); //2006电机速度PID
   pid_init(&D2006_motor2.motor_speed_pid, motor_speed_pid_2006, 16000, 16000); //2006电机速度PID
   pid_init(&D2006_motor1.motor_pos_pid, motor_pos_pid_2006, 10000, 10000); //2006电机位置PID
@@ -94,11 +97,11 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   //can初始化
   can_filter_init();//对can1 can2的过滤器进行配置
   //飞镖创建、发射任务设置
-  roket peipei={.shootSpeed=3000,.yawPlace=600};
-  roket linGanGu={.shootSpeed=3000,.yawPlace=900};
-  roket byd={.shootSpeed=3000,.yawPlace=600};
-  roket myb={.shootSpeed=3000,.yawPlace=900};
-  shootTaskInit(&peipei,&linGanGu,&byd,&myb);//按照1、2、3、4发射顺序填入飞镖
+  roket wc1={.shootSpeed=3100,.yawPlace=1000,.yawDelta=0};
+  roket bydp={.shootSpeed=3020,.yawPlace=1010,.yawDelta=0};
+  roket wc3={.shootSpeed=3100,.yawPlace=940,.yawDelta=0};
+  roket man={.shootSpeed=3100,.yawPlace=950,.yawDelta=0};
+  shootTaskInit(&wc1,&bydp,&wc3,&man);//按照1、2、3、4发射顺序填入飞镖
   //推杆电机和yaw电机初始化，方便限制电机动作
   while(!pushYawInit()){DWTRefreshTimeMs();//更新毫秒计时
     dartSysStateCheck();//各类限位状态查询
@@ -108,6 +111,8 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
     pushPlaceRefreshSpeedy();//更新push电机数据
 		calAndSendMotor();
 		HAL_Delay(1);}
+  //裁判系统接收初始化uart5
+  HAL_UARTEx_ReceiveToIdle_IT(&huart5,rfDataBuf,sizeof(rfDataBuf));
   //其它初始化
 
 }
@@ -152,6 +157,7 @@ int main(void)
   MX_CAN2_Init();
   MX_USART3_UART_Init();
   MX_USB_DEVICE_Init();
+  MX_UART5_Init();
   /* USER CODE BEGIN 2 */
 	taskInit();
   /* USER CODE END 2 */

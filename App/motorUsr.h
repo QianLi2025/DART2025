@@ -22,13 +22,16 @@ typedef struct
 	float last_angle;		  //上次的角度
 	float angle_difl;     //角度差，用于累加（也可以用于长度计算）
 	float absolute_angle; //绝对角度
+  int16_t nowPixel;//当前像素位，专门给yaw电机使用
 	//位置相关
 	int16_t target_pos;
   int16_t torque_current;		//实际转矩电流
+  int16_t target_pixel;//目标像素位，yaw电机专用
   uint8_t temp;		//电机温度
   //PID
   pid_struct_t motor_speed_pid;
   pid_struct_t motor_pos_pid;
+  pid_struct_t motor_pos_pixel_pid;//pixel计算，专门给yaw电机使用
 } DJImotor_info_t;
 #pragma PACKED()
 
