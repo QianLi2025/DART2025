@@ -211,7 +211,7 @@ uint8_t yawSetPlaceVisual(int16_t yawDelta){
     D6020_motor1.target_pos=-244;
     D6020_motor1.nowPixel=minipc.minipc2mcu.distance;
     D6020_motor1.target_pixel=-yawDelta;
-    return (abs(D6020_motor1.nowPixel+yawDelta)<=2) ? 1:0;
+    return (abs(D6020_motor1.nowPixel+yawDelta)<=2&&abs(D6020_motor1.set_voltage)<1000) ? 1:0;//当位置达到且速度小于一定时才认为成功置位
 }
 //弹夹切换函数，1代表靠右侧弹夹，2代表靠左侧弹夹
 void magazineSwitch(uint8_t switchTo){
@@ -281,7 +281,12 @@ void manualTask(){
     int16_t magazineSpeed=2*rc_ctrl.rc.ch[0];//右左右
     if(abs(yawSpeed)>500){yawSetSpeed(yawSpeed);}else{yawStop();}
     if(abs(pushSpeed)>500){pushSetSpeed(pushSpeed);}else{pushStop();}
-    if(rc_ctrl.rc.s[0]==3){shootingCircleSetSpeed(400);}else if(rc_ctrl.rc.s[0]==2){shootingCircleSetSpeed(-400);}else(shootingCircleStop());
+    if(rc_ctrl.rc.s[0]==3||dartState.magazineSwitch==1||dartState.magazineSwitch==2){
+        shootingCircleSetSpeed(400);}//当换弹和遥控器控制时，令摩擦轮向外旋转，防止此时进行供弹
+    else if(rc_ctrl.rc.s[0]==2){
+        shootingCircleSetSpeed(-400);}
+    else{
+        shootingCircleStop();}
     if(magazineSpeed<-500){//切换到弹夹1
         dartState.magazineSwitch=1;
     }
