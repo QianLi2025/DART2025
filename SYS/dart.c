@@ -10,7 +10,8 @@ dartSysState_t dartState={
                         .magazineCurrentLimitPushed=0,
                         .magazineSwitch=0,
                         .needJiaoZhun=1,
-                        .semiAutoState=1};//系统状态
+                        .semiAutoState=1,
+                        .visualJiaoZhun=0};//系统状态
 roketShootingTaskT roketShootTask={
                         .shootPushPlace={0,0,0,0},
                         .shootPushSpeed={0,0,0,0},
@@ -211,7 +212,11 @@ uint8_t yawSetPlaceVisual(int16_t yawDelta){
     D6020_motor1.target_pos=-244;
     D6020_motor1.nowPixel=minipc.minipc2mcu.distance;
     D6020_motor1.target_pixel=-yawDelta;
-    return (abs(D6020_motor1.nowPixel+yawDelta)<=2&&abs(D6020_motor1.set_voltage)<1000) ? 1:0;//当位置达到且速度小于一定时才认为成功置位
+    if(abs(D6020_motor1.nowPixel+yawDelta)<=2&&abs(D6020_motor1.set_voltage)<1500)//当位置达到且速度小于一定时才认为成功置位
+    {
+        dartState.visualJiaoZhun=1;
+    }
+    return dartState.visualJiaoZhun;
 }
 //弹夹切换函数，1代表靠右侧弹夹，2代表靠左侧弹夹
 void magazineSwitch(uint8_t switchTo){
@@ -308,12 +313,12 @@ void semiAutoTask(){
         {
         
         case 0: break;//调试模式
-        case 1: if(shootPrepare(1,roketShootTask.shootYawPlace[0],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=2;}break;//第一组弹夹发射准备
-        case 2: if(shootRoket(1,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=3;}; break;//第一个飞镖发射
+        case 1: if(shootPrepare(1,roketShootTask.shootYawPlace[0],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=2;dartState.visualJiaoZhun=0;}break;//第一组弹夹发射准备
+        case 2: if(shootRoket(1,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=3;dartState.visualJiaoZhun=0;}; break;//第一个飞镖发射
         case 3: if(shootRoket(2,0)){dartState.semiAutoState=4;}; break;//第二个飞镖发射
-        case 4: if(shootPrepare(2,roketShootTask.shootYawPlace[2],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=5;} break;//第二组弹夹发射准备
-        case 5: if(shootRoket(3,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=6;}; break;//第三个飞镖发射
-        case 6: if(shootRoket(4,0)){dartState.semiAutoState=7;}; break;//第四个飞镖发射
+        case 4: if(shootPrepare(2,roketShootTask.shootYawPlace[2],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=5;dartState.visualJiaoZhun=0;} break;//第二组弹夹发射准备
+        case 5: if(shootRoket(3,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=6;dartState.visualJiaoZhun=0;}; break;//第三个飞镖发射
+        case 6: if(shootRoket(4,0)){dartState.semiAutoState=7;dartState.visualJiaoZhun=0;}; break;//第四个飞镖发射
         default:
             break;
         }
