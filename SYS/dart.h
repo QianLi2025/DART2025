@@ -29,6 +29,7 @@ typedef struct{
     uint8_t needJiaoZhun;//校准状态 0校准完成，1需要校准
     uint8_t semiAutoState;//半自动模式状态
     uint8_t visualJiaoZhun;//视觉校准状态1代表已校准，0代表未校准
+    uint8_t emergenceyStop;
 }dartSysState_t;
 typedef struct 
 {

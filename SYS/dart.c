@@ -11,7 +11,8 @@ dartSysState_t dartState={
                         .magazineSwitch=0,
                         .needJiaoZhun=1,
                         .semiAutoState=1,
-                        .visualJiaoZhun=0};//系统状态
+                        .visualJiaoZhun=0,
+                        .emergenceyStop=0};//系统状态
 roketShootingTaskT roketShootTask={
                         .shootPushPlace={0,0,0,0},
                         .shootPushSpeed={0,0,0,0},
@@ -44,6 +45,10 @@ void checkControlMode(){
     case 2:mode=semiAuto;break;//半自动模式
     case 3:mode=manual;break;//手动模式
     default:mode=notConnected;break;
+    }
+    if(dartState.semiAutoState!=0){
+        if(rc_ctrl.rc.ch[1]<-500&&dartState.semiAutoState!=7){dartState.emergenceyStop=dartState.semiAutoState;dartState.semiAutoState=7;}//进入紧急停止状态
+        else if(rc_ctrl.rc.ch[1]>500&&dartState.emergenceyStop!=0){dartState.semiAutoState=dartState.emergenceyStop;dartState.emergenceyStop=0;}
     }
 }
 
@@ -276,11 +281,18 @@ uint8_t shootRoket(uint8_t shootingNum,uint8_t refreeNeed){
     return 0;
 }
 
+void emergencyStop(){
+    yawStop();
+    shootingCircleStop();
+    pushStop();
+}
+
 static char word_buf[64];
 
 void manualTask(){
     yawPlaceRefresh();
     dartState.needJiaoZhun=1;
+    dartState.semiAutoState=0;
     int16_t yawSpeed=rc_ctrl.rc.ch[2];//左左右
 	int16_t pushSpeed=45*rc_ctrl.rc.ch[3];//左上下
     int16_t magazineSpeed=2*rc_ctrl.rc.ch[0];//右左右
@@ -319,6 +331,7 @@ void semiAutoTask(){
         case 4: if(shootPrepare(2,roketShootTask.shootYawPlace[2],2400)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=5;dartState.visualJiaoZhun=0;} break;//第二组弹夹发射准备
         case 5: if(shootRoket(3,0)&&rc_ctrl.rc.s[0]==3){dartState.semiAutoState=6;dartState.visualJiaoZhun=0;}; break;//第三个飞镖发射
         case 6: if(shootRoket(4,0)){dartState.semiAutoState=7;dartState.visualJiaoZhun=0;}; break;//第四个飞镖发射
+        case 7: emergencyStop();break;
         default:
             break;
         }

@@ -97,11 +97,23 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   //can初始化
   can_filter_init();//对can1 can2的过滤器进行配置
   //飞镖创建、发射任务设置
-  roket wc1={.shootSpeed=3100,.yawPlace=1000,.yawDelta=0};
-  roket bydp={.shootSpeed=3020,.yawPlace=1010,.yawDelta=0};
-  roket wc3={.shootSpeed=3100,.yawPlace=940,.yawDelta=0};
-  roket man={.shootSpeed=3100,.yawPlace=950,.yawDelta=0};
-  shootTaskInit(&wc1,&bydp,&wc3,&man);//按照1、2、3、4发射顺序填入飞镖
+
+  roket BYD4={.shootSpeed=3100,.yawPlace=970,.yawDelta=0};
+  roket BB={.shootSpeed=3200,.yawPlace=860,.yawDelta=0};
+  roket DD={.shootSpeed=3000,.yawPlace=870,.yawDelta=0};
+	roket WC2={.shootSpeed=3100,.yawPlace=970,.yawDelta=0};
+
+  roket SJ={.shootSpeed=3100,.yawPlace=970,.yawDelta=-10};
+  roket PP={.shootSpeed=3100,.yawPlace=970,.yawDelta=-10};
+  roket NC={.shootSpeed=3100,.yawPlace=970,.yawDelta=-10};
+  roket NH={.shootSpeed=3150,.yawPlace=940,.yawDelta=-5};
+
+  roket GD={.shootSpeed=3200,.yawPlace=970,.yawDelta=0};
+  roket HRL={.shootSpeed=3200,.yawPlace=970,.yawDelta=0};
+  roket ZJ={.shootSpeed=3200,.yawPlace=970,.yawDelta=0};
+  roket ZTX={.shootSpeed=3200,.yawPlace=970,.yawDelta=0};
+  // shootTaskInit(&SJ,&PP,&NC,&NH);//按照1、2、3、4发射顺序填入飞镖
+  shootTaskInit(&GD,&HRL,&ZJ,&ZTX);//按照1、2、3、4发射顺序填入飞镖
   //推杆电机和yaw电机初始化，方便限制电机动作
   while(!pushYawInit()){DWTRefreshTimeMs();//更新毫秒计时
     dartSysStateCheck();//各类限位状态查询

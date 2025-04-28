@@ -3,11 +3,11 @@
 <title>Static Call Graph - [DART2025Z\DART2025Z.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DART2025Z\DART2025Z.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Wed Apr 23 19:27:02 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Mon Apr 28 22:21:18 2025
 <BR><P>
-<H3>Maximum Stack Usage =        376 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        396 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-OTG_FS_IRQHandler &rArr; HAL_PCD_IRQHandler &rArr; PCD_EP_OutSetupPacket_int &rArr; HAL_PCD_SetupStageCallback &rArr; USBD_LL_SetupStage &rArr; USBD_StdDevReq &rArr; USBD_GetDescriptor &rArr; USBD_CtlSendData &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePacket
+__rt_entry_main &rArr; main &rArr; taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 <P>
 <H3>
 Functions with no stack information
@@ -165,9 +165,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[1a1]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[1a2]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[1a2]"></a>__scatterload_loop</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[1a3]"></a>__scatterload_loop</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[7d]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
@@ -175,9 +175,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
-<P><STRONG><a name="[1a3]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, __scatter.o(!!handler_null), UNUSED)
+<P><STRONG><a name="[1a4]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, __scatter.o(!!handler_null), UNUSED)
 
-<P><STRONG><a name="[1a4]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[1a5]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[83]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
@@ -187,72 +187,72 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_init
 </UL>
 
-<P><STRONG><a name="[1a5]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[1a6]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[1a6]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[1a7]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[1a7]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[1a8]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
-<P><STRONG><a name="[1a8]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[1a9]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[1a9]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000034))
+<P><STRONG><a name="[1aa]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000034))
 
-<P><STRONG><a name="[1aa]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[1ab]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[1ab]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[1ac]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[1ac]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[1ad]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
-<P><STRONG><a name="[1ad]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[1ae]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
-<P><STRONG><a name="[1ae]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[1af]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[1af]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[1b0]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
-<P><STRONG><a name="[1b0]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[1b1]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[1b1]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[1b2]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[1b2]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[1b3]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[1b3]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000006))
+<P><STRONG><a name="[1b4]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000006))
 
-<P><STRONG><a name="[1b4]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000010))
+<P><STRONG><a name="[1b5]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000010))
 
-<P><STRONG><a name="[1b5]"></a>__rt_lib_init_relocate_pie_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[1b6]"></a>__rt_lib_init_relocate_pie_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[1b6]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000035))
+<P><STRONG><a name="[1b7]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000035))
 
-<P><STRONG><a name="[1b7]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[1b8]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[1b8]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000027))
+<P><STRONG><a name="[1b9]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000027))
 
-<P><STRONG><a name="[1b9]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[1ba]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
 <P><STRONG><a name="[88]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[1ba]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[1bb]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
-<P><STRONG><a name="[1bb]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
+<P><STRONG><a name="[1bc]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
 
-<P><STRONG><a name="[1bc]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
+<P><STRONG><a name="[1bd]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
 
-<P><STRONG><a name="[1bd]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
+<P><STRONG><a name="[1be]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
 
-<P><STRONG><a name="[1be]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
+<P><STRONG><a name="[1bf]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
 
-<P><STRONG><a name="[1bf]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[1c0]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[1c0]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[1c1]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[7b]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[1c1]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[1c2]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[80]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -265,17 +265,17 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[1c2]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[1c3]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[84]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 336 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; MX_USB_DEVICE_Init &rArr; USBD_Init &rArr; USBD_LL_Init &rArr; HAL_PCD_Init &rArr; HAL_PCD_MspInit &rArr; HAL_RCCEx_PeriphCLKConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 396 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[1c3]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[1c4]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[8f]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -285,7 +285,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[1c4]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[1c5]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[89]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
@@ -543,9 +543,9 @@ Global Symbols
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 </UL>
 
-<P><STRONG><a name="[1c5]"></a>_ll_udiv</STRONG> (Thumb, 240 bytes, Stack size 48 bytes, lludivv7m.o(.text), UNUSED)
+<P><STRONG><a name="[1c6]"></a>_ll_udiv</STRONG> (Thumb, 240 bytes, Stack size 48 bytes, lludivv7m.o(.text), UNUSED)
 
-<P><STRONG><a name="[181]"></a>__aeabi_memcpy</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text))
+<P><STRONG><a name="[182]"></a>__aeabi_memcpy</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;referee_fbkdata
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_rec
 </UL>
@@ -554,7 +554,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 
-<P><STRONG><a name="[1c6]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
+<P><STRONG><a name="[1c7]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
 
 <P><STRONG><a name="[fc]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
@@ -562,27 +562,27 @@ Global Symbols
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_PCD_MspInit
 </UL>
 
-<P><STRONG><a name="[1c7]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[1c8]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1c8]"></a>__rt_memclr_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[1c9]"></a>__rt_memclr_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1c9]"></a>_memset_w</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[1ca]"></a>_memset_w</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1ca]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[1cb]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1cb]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[1cc]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1cc]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[1cd]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[8c]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memcpy
 </UL>
 
-<P><STRONG><a name="[1cd]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[1ce]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1ce]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[1cf]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1cf]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[1d0]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
 
 <P><STRONG><a name="[81]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -603,30 +603,30 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[1d0]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[1d1]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[8d]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[1d1]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[1d2]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[8a]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
 
-<P><STRONG><a name="[1d2]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[1d3]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1d3]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[1d4]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1d4]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[1d5]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[90]"></a>Append_CRC16_Check_Sum</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, crc8_crc16.o(.text.Append_CRC16_Check_Sum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Append_CRC16_Check_Sum &rArr; Get_CRC16_Check_Sum
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_CRC16_Check_Sum
 </UL>
-<BR>[Called By]<UL><LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
 </UL>
 
 <P><STRONG><a name="[4]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(.text.BusFault_Handler))
@@ -673,13 +673,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTRefreshTimeMs
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetTimeMs
 </UL>
-<BR>[Called By]<UL><LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_rec
 </UL>
 
 <P><STRONG><a name="[9a]"></a>DWTGetTimeMs</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dwt.o(.text.DWTGetTimeMs))
-<BR><BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushPlaceRefreshSpeedy
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<BR><BR>[Called By]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushPlaceRefreshSpeedy
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetDeltaTMS
 </UL>
 
@@ -689,7 +689,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_TS_GET
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetDeltaTMS
 </UL>
 
@@ -697,8 +697,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTRefreshTimeMs
 </UL>
 
-<P><STRONG><a name="[18d]"></a>DWT_init</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dwt.o(.text.DWT_init))
-<BR><BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<P><STRONG><a name="[18e]"></a>DWT_init</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dwt.o(.text.DWT_init))
+<BR><BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(.text.DebugMon_Handler))
@@ -923,7 +923,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_SetCurrentMode
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
 <P><STRONG><a name="[ae]"></a>HAL_GPIO_Init</STRONG> (Thumb, 922 bytes, Stack size 52 bytes, stm32f4xx_hal_gpio.o(.text.HAL_GPIO_Init))
@@ -935,7 +935,7 @@ Global Symbols
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_PCD_MspInit
 </UL>
 
-<P><STRONG><a name="[184]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, stm32f4xx_hal_gpio.o(.text.HAL_GPIO_ReadPin))
+<P><STRONG><a name="[185]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, stm32f4xx_hal_gpio.o(.text.HAL_GPIO_ReadPin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawLimitCheck
@@ -1351,7 +1351,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Start_Receive_IT
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
 </UL>
 
@@ -1517,10 +1517,10 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(.text.PendSV_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f446xx.o(RESET)
 </UL>
-<P><STRONG><a name="[188]"></a>RC_init</STRONG> (Thumb, 160 bytes, Stack size 12 bytes, bsp_rc.o(.text.RC_init))
+<P><STRONG><a name="[189]"></a>RC_init</STRONG> (Thumb, 160 bytes, Stack size 12 bytes, bsp_rc.o(.text.RC_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = RC_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;remote_control_init
+<BR>[Called By]<UL><LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;remote_control_init
 </UL>
 
 <P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(.text.SVC_Handler))
@@ -2308,7 +2308,7 @@ Global Symbols
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can1_cmd_motor
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
 <P><STRONG><a name="[167]"></a>can1_cmd_motor</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, can_user.o(.text.can1_cmd_motor))
@@ -2334,14 +2334,14 @@ Global Symbols
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_Start
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_ConfigFilter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[175]"></a>checkControlMode</STRONG> (Thumb, 98 bytes, Stack size 4 bytes, dart.o(.text.checkControlMode))
+<P><STRONG><a name="[179]"></a>checkControlMode</STRONG> (Thumb, 222 bytes, Stack size 4 bytes, dart.o(.text.checkControlMode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = checkControlMode
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
 <P><STRONG><a name="[16c]"></a>dartSysStateCheck</STRONG> (Thumb, 296 bytes, Stack size 32 bytes, dart.o(.text.dartSysStateCheck))
@@ -2352,45 +2352,55 @@ Global Symbols
 <LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushUpperLimitCheck
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+</UL>
+
+<P><STRONG><a name="[170]"></a>emergencyStop</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, dart.o(.text.emergencyStop))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = emergencyStop &rArr; yawStop &rArr; pidReset
+</UL>
+<BR>[Calls]<UL><LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleStop
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
+<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
+</UL>
+<BR>[Called By]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
 </UL>
 
 <P><STRONG><a name="[165]"></a>limitProtection</STRONG> (Thumb, 480 bytes, Stack size 40 bytes, dart.o(.text.limitProtection))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_calc
-<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pidReset
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pidReset
 </UL>
 <BR>[Called By]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calAndSendMotor
 </UL>
 
-<P><STRONG><a name="[173]"></a>magazineSetSpeed</STRONG> (Thumb, 24 bytes, Stack size 4 bytes, dart.o(.text.magazineSetSpeed))
+<P><STRONG><a name="[177]"></a>magazineSetSpeed</STRONG> (Thumb, 24 bytes, Stack size 4 bytes, dart.o(.text.magazineSetSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = magazineSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
+<BR>[Called By]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
 </UL>
 
-<P><STRONG><a name="[172]"></a>magazineStop</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dart.o(.text.magazineStop))
-<BR><BR>[Called By]<UL><LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
+<P><STRONG><a name="[176]"></a>magazineStop</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dart.o(.text.magazineStop))
+<BR><BR>[Called By]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
 </UL>
 
-<P><STRONG><a name="[171]"></a>magazineSwitch</STRONG> (Thumb, 232 bytes, Stack size 24 bytes, dart.o(.text.magazineSwitch))
+<P><STRONG><a name="[175]"></a>magazineSwitch</STRONG> (Thumb, 232 bytes, Stack size 24 bytes, dart.o(.text.magazineSwitch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = magazineSwitch &rArr; magazineSetSpeed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSetSpeed
-<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineStop
+<BR>[Calls]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSetSpeed
+<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineStop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
+<BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
 </UL>
 
 <P><STRONG><a name="[85]"></a>main</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 336 + Unknown Stack Size
-<LI>Call Chain = main &rArr; MX_USB_DEVICE_Init &rArr; USBD_Init &rArr; USBD_LL_Init &rArr; HAL_PCD_Init &rArr; HAL_PCD_MspInit &rArr; HAL_RCCEx_PeriphCLKConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 396 + Unknown Stack Size
+<LI>Call Chain = main &rArr; taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
-<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<BR>[Calls]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
+<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_UART5_Init
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USB_DEVICE_Init
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART3_UART_Init
@@ -2402,28 +2412,28 @@ Global Symbols
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calAndSendMotor
-<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushPlaceRefreshSpeedy
-<LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawPlaceRefresh
-<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
-<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkControlMode
+<LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushPlaceRefreshSpeedy
+<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawPlaceRefresh
+<LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
+<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkControlMode
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTRefreshTimeMs
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[179]"></a>manualTask</STRONG> (Thumb, 312 bytes, Stack size 32 bytes, dart.o(.text.manualTask))
+<P><STRONG><a name="[17d]"></a>manualTask</STRONG> (Thumb, 316 bytes, Stack size 32 bytes, dart.o(.text.manualTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = manualTask &rArr; magazineSwitch &rArr; magazineSetSpeed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawPlaceRefresh
-<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeed
-<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
-<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetSpeed
-<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleStop
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
-<LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
+<BR>[Calls]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawPlaceRefresh
+<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeed
+<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
+<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetSpeed
+<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleStop
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
+<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2431,33 +2441,33 @@ Global Symbols
 <P><STRONG><a name="[95]"></a>minipc_rec</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, minipc_protocol.o(.text.minipc_rec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = minipc_rec &rArr; Verify_CRC16_Check_Sum &rArr; Get_CRC16_Check_Sum
 </UL>
-<BR>[Calls]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC16_Check_Sum
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetDeltaTMS
 </UL>
 <BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CDC_Receive_FS
 </UL>
 
-<P><STRONG><a name="[176]"></a>minipc_upgrade</STRONG> (Thumb, 226 bytes, Stack size 32 bytes, minipc_protocol.o(.text.minipc_upgrade))
+<P><STRONG><a name="[17a]"></a>minipc_upgrade</STRONG> (Thumb, 226 bytes, Stack size 32 bytes, minipc_protocol.o(.text.minipc_upgrade))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = minipc_upgrade &rArr; Append_CRC16_Check_Sum &rArr; Get_CRC16_Check_Sum
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Append_CRC16_Check_Sum
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetDeltaTMS
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[18e]"></a>motorInit</STRONG> (Thumb, 108 bytes, Stack size 20 bytes, motorusr.o(.text.motorInit))
+<P><STRONG><a name="[18f]"></a>motorInit</STRONG> (Thumb, 108 bytes, Stack size 20 bytes, motorusr.o(.text.motorInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = motorInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[170]"></a>pidReset</STRONG> (Thumb, 30 bytes, Stack size 4 bytes, pid.o(.text.pidReset))
+<P><STRONG><a name="[174]"></a>pidReset</STRONG> (Thumb, 30 bytes, Stack size 4 bytes, pid.o(.text.pidReset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = pidReset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
+<BR>[Called By]<UL><LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;limitProtection
 </UL>
 
@@ -2468,184 +2478,187 @@ Global Symbols
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;limitProtection
 </UL>
 
-<P><STRONG><a name="[18f]"></a>pid_init</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, pid.o(.text.pid_init))
+<P><STRONG><a name="[190]"></a>pid_init</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, pid.o(.text.pid_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = pid_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[182]"></a>pushGoBack</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, dart.o(.text.pushGoBack))
+<P><STRONG><a name="[183]"></a>pushGoBack</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, dart.o(.text.pushGoBack))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = pushGoBack &rArr; pushSetSpeed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
+<BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
+<BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
 </UL>
 
-<P><STRONG><a name="[183]"></a>pushGoTop</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, dart.o(.text.pushGoTop))
+<P><STRONG><a name="[184]"></a>pushGoTop</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, dart.o(.text.pushGoTop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = pushGoTop &rArr; pushSetSpeed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
+<BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
+<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
 </UL>
 
 <P><STRONG><a name="[16f]"></a>pushLowerLimitCheck</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, dart.o(.text.pushLowerLimitCheck))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = pushLowerLimitCheck &rArr; HAL_GPIO_ReadPin
 </UL>
-<BR>[Calls]<UL><LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<BR>[Calls]<UL><LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
 </UL>
 
-<P><STRONG><a name="[178]"></a>pushPlaceRefreshSpeedy</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, dart.o(.text.pushPlaceRefreshSpeedy))
+<P><STRONG><a name="[17c]"></a>pushPlaceRefreshSpeedy</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, dart.o(.text.pushPlaceRefreshSpeedy))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = pushPlaceRefreshSpeedy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetTimeMs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[185]"></a>pushSetPlace</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, dart.o(.text.pushSetPlace))
+<P><STRONG><a name="[186]"></a>pushSetPlace</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, dart.o(.text.pushSetPlace))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = pushSetPlace &rArr; pushSetSpeed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
+<BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
+<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
 </UL>
 
-<P><STRONG><a name="[17d]"></a>pushSetSpeed</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, dart.o(.text.pushSetSpeed))
+<P><STRONG><a name="[180]"></a>pushSetSpeed</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, dart.o(.text.pushSetSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = pushSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
-<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoTop
-<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoBack
-<LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetPlace
+<BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoTop
+<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoBack
+<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetPlace
 </UL>
 
-<P><STRONG><a name="[17e]"></a>pushStop</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, dart.o(.text.pushStop))
-<BR><BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
-<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoTop
-<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoBack
+<P><STRONG><a name="[173]"></a>pushStop</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, dart.o(.text.pushStop))
+<BR><BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;emergencyStop
+<LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoTop
+<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoBack
 </UL>
 
 <P><STRONG><a name="[16e]"></a>pushUpperLimitCheck</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, dart.o(.text.pushUpperLimitCheck))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = pushUpperLimitCheck &rArr; HAL_GPIO_ReadPin
 </UL>
-<BR>[Calls]<UL><LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<BR>[Calls]<UL><LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
 </UL>
 
-<P><STRONG><a name="[186]"></a>pushYawInit</STRONG> (Thumb, 180 bytes, Stack size 16 bytes, dart.o(.text.pushYawInit))
+<P><STRONG><a name="[187]"></a>pushYawInit</STRONG> (Thumb, 180 bytes, Stack size 16 bytes, dart.o(.text.pushYawInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = pushYawInit &rArr; dartSysStateCheck &rArr; yawLimitCheck &rArr; HAL_GPIO_ReadPin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
-<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
-<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetSpeed
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
-<LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
+<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
+<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetSpeed
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushStop
+<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawStop
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTGetTimeMs
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
 <P><STRONG><a name="[114]"></a>referee_fbkdata</STRONG> (Thumb, 944 bytes, Stack size 32 bytes, referee.o(.text.referee_fbkdata))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = referee_fbkdata &rArr; Verify_CRC16_Check_Sum &rArr; Get_CRC16_Check_Sum
 </UL>
-<BR>[Calls]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC8_Check_Sum
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Verify_CRC16_Check_Sum
 </UL>
 <BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
 </UL>
 
-<P><STRONG><a name="[187]"></a>remote_control_init</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, remote_control.o(.text.remote_control_init))
+<P><STRONG><a name="[188]"></a>remote_control_init</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, remote_control.o(.text.remote_control_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = remote_control_init &rArr; RC_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RC_init
+<BR>[Calls]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RC_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[17a]"></a>semiAutoTask</STRONG> (Thumb, 366 bytes, Stack size 16 bytes, dart.o(.text.semiAutoTask))
+<P><STRONG><a name="[17e]"></a>semiAutoTask</STRONG> (Thumb, 372 bytes, Stack size 16 bytes, dart.o(.text.semiAutoTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = semiAutoTask &rArr; shootRoket &rArr; yawSetPlace &rArr; __aeabi_f2d
 </UL>
-<BR>[Calls]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
-<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
+<BR>[Calls]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;emergencyStop
+<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[189]"></a>shootPrepare</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, dart.o(.text.shootPrepare))
+<P><STRONG><a name="[18a]"></a>shootPrepare</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, dart.o(.text.shootPrepare))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = shootPrepare &rArr; yawSetPlace &rArr; __aeabi_f2d
 </UL>
-<BR>[Calls]<UL><LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
-<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
-<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoBack
-<LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetPlace
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeed
+<BR>[Calls]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magazineSwitch
+<LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
+<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoBack
+<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetPlace
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
+<BR>[Called By]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
 </UL>
 
-<P><STRONG><a name="[18a]"></a>shootRoket</STRONG> (Thumb, 496 bytes, Stack size 48 bytes, dart.o(.text.shootRoket))
+<P><STRONG><a name="[18b]"></a>shootRoket</STRONG> (Thumb, 496 bytes, Stack size 48 bytes, dart.o(.text.shootRoket))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = shootRoket &rArr; yawSetPlace &rArr; __aeabi_f2d
 </UL>
-<BR>[Calls]<UL><LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlaceVisual
-<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
-<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoTop
-<LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetPlace
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeed
+<BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlaceVisual
+<LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
+<LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushGoTop
+<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetPlace
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
+<BR>[Called By]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semiAutoTask
 </UL>
 
-<P><STRONG><a name="[190]"></a>shootTaskInit</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, dart.o(.text.shootTaskInit))
+<P><STRONG><a name="[191]"></a>shootTaskInit</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, dart.o(.text.shootTaskInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = shootTaskInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[17f]"></a>shootingCircleSetSpeed</STRONG> (Thumb, 40 bytes, Stack size 4 bytes, dart.o(.text.shootingCircleSetSpeed))
+<P><STRONG><a name="[181]"></a>shootingCircleSetSpeed</STRONG> (Thumb, 40 bytes, Stack size 4 bytes, dart.o(.text.shootingCircleSetSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = shootingCircleSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
-<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
+<BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
 </UL>
 
-<P><STRONG><a name="[180]"></a>shootingCircleStop</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dart.o(.text.shootingCircleStop))
-<BR><BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<P><STRONG><a name="[172]"></a>shootingCircleStop</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dart.o(.text.shootingCircleStop))
+<BR><BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;emergencyStop
 </UL>
 
-<P><STRONG><a name="[174]"></a>taskInit</STRONG> (Thumb, 604 bytes, Stack size 200 bytes, main.o(.text.taskInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 316<LI>Call Chain = taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
+<P><STRONG><a name="[178]"></a>taskInit</STRONG> (Thumb, 656 bytes, Stack size 264 bytes, main.o(.text.taskInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 380<LI>Call Chain = taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_ReceiveToIdle_IT
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calAndSendMotor
-<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushPlaceRefreshSpeedy
-<LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawPlaceRefresh
-<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
-<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkControlMode
+<LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushPlaceRefreshSpeedy
+<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawPlaceRefresh
+<LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;minipc_upgrade
+<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkControlMode
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
-<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootTaskInit
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootTaskInit
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_filter_init
-<LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_init
-<LI><a href="#[18e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motorInit
-<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;remote_control_init
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_init
+<LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motorInit
+<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;remote_control_init
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWTRefreshTimeMs
-<LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_init
+<LI><a href="#[18e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2653,157 +2666,158 @@ Global Symbols
 <P><STRONG><a name="[16d]"></a>yawLimitCheck</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, dart.o(.text.yawLimitCheck))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = yawLimitCheck &rArr; HAL_GPIO_ReadPin
 </UL>
-<BR>[Calls]<UL><LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<BR>[Calls]<UL><LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
 </UL>
 
-<P><STRONG><a name="[177]"></a>yawPlaceRefresh</STRONG> (Thumb, 172 bytes, Stack size 0 bytes, dart.o(.text.yawPlaceRefresh))
-<BR><BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<P><STRONG><a name="[17b]"></a>yawPlaceRefresh</STRONG> (Thumb, 172 bytes, Stack size 0 bytes, dart.o(.text.yawPlaceRefresh))
+<BR><BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[18b]"></a>yawSetPlace</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, dart.o(.text.yawSetPlace))
+<P><STRONG><a name="[18c]"></a>yawSetPlace</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, dart.o(.text.yawSetPlace))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = yawSetPlace &rArr; __aeabi_f2d
 </UL>
-<BR>[Calls]<UL><LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dcmpge
+<BR>[Calls]<UL><LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dcmpge
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
+<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootPrepare
 </UL>
 
-<P><STRONG><a name="[18c]"></a>yawSetPlaceVisual</STRONG> (Thumb, 152 bytes, Stack size 20 bytes, dart.o(.text.yawSetPlaceVisual))
+<P><STRONG><a name="[18d]"></a>yawSetPlaceVisual</STRONG> (Thumb, 152 bytes, Stack size 20 bytes, dart.o(.text.yawSetPlaceVisual))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = yawSetPlaceVisual
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
+<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootRoket
 </UL>
 
-<P><STRONG><a name="[17b]"></a>yawSetSpeed</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, dart.o(.text.yawSetSpeed))
+<P><STRONG><a name="[17f]"></a>yawSetSpeed</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, dart.o(.text.yawSetSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = yawSetSpeed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
 </UL>
 
-<P><STRONG><a name="[17c]"></a>yawStop</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, dart.o(.text.yawStop))
+<P><STRONG><a name="[171]"></a>yawStop</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, dart.o(.text.yawStop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = yawStop &rArr; pidReset
 </UL>
-<BR>[Calls]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pidReset
+<BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pidReset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
-</UL>
-
-<P><STRONG><a name="[195]"></a>__fpl_dcmp_Inf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dcmpi.o(x$fpl$dcmpinf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
-<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
-<LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
+<BR>[Called By]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manualTask
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushYawInit
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;emergencyStop
 </UL>
 
-<P><STRONG><a name="[1d5]"></a>__aeabi_cdcmpeq</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, deqf.o(x$fpl$deqf), UNUSED)
-
-<P><STRONG><a name="[193]"></a>_dcmpeq</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, deqf.o(x$fpl$deqf), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
-<LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_Inf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dneq
-<LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_deq
+<P><STRONG><a name="[196]"></a>__fpl_dcmp_Inf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dcmpi.o(x$fpl$dcmpinf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
 </UL>
 
-<P><STRONG><a name="[1d6]"></a>__aeabi_cdcmpge</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dgeqf.o(x$fpl$dgeqf), UNUSED)
+<P><STRONG><a name="[1d6]"></a>__aeabi_cdcmpeq</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, deqf.o(x$fpl$deqf), UNUSED)
 
-<P><STRONG><a name="[196]"></a>_dcmpge</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dgeqf.o(x$fpl$dgeqf), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
-<LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_Inf
+<P><STRONG><a name="[194]"></a>_dcmpeq</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, deqf.o(x$fpl$deqf), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
+<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_Inf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dgeq
-<LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dgr
-</UL>
-
-<P><STRONG><a name="[1d7]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
-
-<P><STRONG><a name="[197]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
-<LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_Inf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dls
-<LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dleq
+<BR>[Called By]<UL><LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dneq
+<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_deq
 </UL>
 
-<P><STRONG><a name="[1d8]"></a>__fpl_dcmple_InfNaN</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, dleqf.o(x$fpl$dleqf), UNUSED)
+<P><STRONG><a name="[1d7]"></a>__aeabi_cdcmpge</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dgeqf.o(x$fpl$dgeqf), UNUSED)
 
-<P><STRONG><a name="[194]"></a>__fpl_dnaninf</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, dnaninf.o(x$fpl$dnaninf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
-<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
-<LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
+<P><STRONG><a name="[197]"></a>_dcmpge</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dgeqf.o(x$fpl$dgeqf), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
+<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_Inf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dgeq
+<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dgr
 </UL>
 
-<P><STRONG><a name="[19a]"></a>__fpl_dretinf</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, dretinf.o(x$fpl$dretinf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_f2d
+<P><STRONG><a name="[1d8]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
+
+<P><STRONG><a name="[198]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
+<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_Inf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dls
+<LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dleq
 </UL>
 
-<P><STRONG><a name="[191]"></a>__aeabi_f2d</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d))
+<P><STRONG><a name="[1d9]"></a>__fpl_dcmple_InfNaN</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, dleqf.o(x$fpl$dleqf), UNUSED)
+
+<P><STRONG><a name="[195]"></a>__fpl_dnaninf</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, dnaninf.o(x$fpl$dnaninf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
+</UL>
+
+<P><STRONG><a name="[19b]"></a>__fpl_dretinf</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, dretinf.o(x$fpl$dretinf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_f2d
+</UL>
+
+<P><STRONG><a name="[192]"></a>__aeabi_f2d</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2d
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
+<BR>[Called By]<UL><LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
 </UL>
 
-<P><STRONG><a name="[198]"></a>_f2d</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
-<LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dretinf
+<P><STRONG><a name="[199]"></a>_f2d</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
+<LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dretinf
 </UL>
 
-<P><STRONG><a name="[1d9]"></a>__aeabi_dcmpeq</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<P><STRONG><a name="[1da]"></a>__aeabi_dcmpeq</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
 
-<P><STRONG><a name="[19b]"></a>_deq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
+<P><STRONG><a name="[19c]"></a>_deq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
 </UL>
 
-<P><STRONG><a name="[19c]"></a>_dneq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
+<P><STRONG><a name="[19d]"></a>_dneq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
 </UL>
 
-<P><STRONG><a name="[1da]"></a>__aeabi_dcmpgt</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<P><STRONG><a name="[1db]"></a>__aeabi_dcmpgt</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
 
-<P><STRONG><a name="[19d]"></a>_dgr</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
+<P><STRONG><a name="[19e]"></a>_dgr</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
 </UL>
 
-<P><STRONG><a name="[192]"></a>__aeabi_dcmpge</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp))
+<P><STRONG><a name="[193]"></a>__aeabi_dcmpge</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_dcmpge
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
+<BR>[Called By]<UL><LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawSetPlace
 </UL>
 
-<P><STRONG><a name="[19e]"></a>_dgeq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
+<P><STRONG><a name="[19f]"></a>_dgeq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpge
 </UL>
 
-<P><STRONG><a name="[1db]"></a>__aeabi_dcmple</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<P><STRONG><a name="[1dc]"></a>__aeabi_dcmple</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
 
-<P><STRONG><a name="[19f]"></a>_dleq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<P><STRONG><a name="[1a0]"></a>_dleq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 </UL>
 
-<P><STRONG><a name="[1dc]"></a>__aeabi_dcmplt</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<P><STRONG><a name="[1dd]"></a>__aeabi_dcmplt</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
 
-<P><STRONG><a name="[1a0]"></a>_dls</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<P><STRONG><a name="[1a1]"></a>_dls</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, dcmp.o(x$fpl$fcmp), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 </UL>
 
-<P><STRONG><a name="[199]"></a>__fpl_fnaninf</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, fnaninf.o(x$fpl$fnaninf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_f2d
+<P><STRONG><a name="[19a]"></a>__fpl_fnaninf</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, fnaninf.o(x$fpl$fnaninf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_f2d
 </UL>
 
 <P><STRONG><a name="[7f]"></a>_fp_init</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, fpinit.o(x$fpl$fpinit))
 <BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_fp_1
 </UL>
 
-<P><STRONG><a name="[1dd]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[1de]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
-<P><STRONG><a name="[1de]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[1df]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 <P>
 <H3>
 Local Symbols
