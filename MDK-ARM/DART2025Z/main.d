@@ -48,4 +48,5 @@ dart2025z/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\App\referee.h
+  ..\App\referee.h ..\Bsp\bit_utils.h \
+  E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\stdbool.h

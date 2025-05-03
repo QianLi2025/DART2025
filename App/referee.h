@@ -6,7 +6,7 @@
 #include "string.h"
 
 /*-------------------------------------------------------------------------------------------*/
-#pragma packed(1)
+#pragma pack(push,1)
 typedef struct
 {
     uint8_t SOF;
@@ -681,7 +681,7 @@ typedef  struct
     custom_info_t custom_info;                     // 0x0308
     robot_custom_data_t robot_custom_data;         // 0x0309
 } referee_t;
-#pragma packed()
+#pragma pack(pop)
 extern referee_t rfData;
 extern uint8_t rfDataBuf[150];
 void referee_fbkdata(referee_t *rf, uint8_t buf[]);
