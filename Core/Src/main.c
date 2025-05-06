@@ -108,17 +108,17 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   roket NC={.shootSpeed=3150,.yawPlace=970,.yawDelta=77};
   roket NH={.shootSpeed=3120,.yawPlace=940,.yawDelta=65};
 
-  roket GD={.shootSpeed=3140,.yawPlace=970,.yawDelta=37};
-  roket HRL={.shootSpeed=3175,.yawPlace=970,.yawDelta=73};
-  roket ZJ={.shootSpeed=3185,.yawPlace=970,.yawDelta=75};
-  roket ZTX={.shootSpeed=3175,.yawPlace=970,.yawDelta=57};
+  roket GD={.shootSpeed=3140,.yawPlace=970,.yawDelta=37,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};//3140
+  roket HRL={.shootSpeed=3175,.yawPlace=970,.yawDelta=73,.shootSpeedBase=3800,.yawPlaceBase=2700,.yawDeltaBase=263};//3175
+  roket ZJ={.shootSpeed=3185,.yawPlace=970,.yawDelta=75,.shootSpeedBase=3770,.yawPlaceBase=2700,.yawDeltaBase=90};
+  roket ZTX={.shootSpeed=3185,.yawPlace=970,.yawDelta=57,.shootSpeedBase=3770,.yawPlaceBase=2700,.yawDeltaBase=90};
 
-  roket tet1={.shootSpeed=500,.yawPlace=500,.yawDelta=37};//偏左摩擦轮速度慢
-  roket tet2={.shootSpeed=3175,.yawPlace=1500,.yawDelta=73};//偏右摩擦轮速度块
-  roket tet3={.shootSpeed=3500,.yawPlace=2500,.yawDelta=75};//偏左摩擦轮速度很快
-  roket tet4={.shootSpeed=3175,.yawPlace=300,.yawDelta=57};//偏右摩擦轮速度慢
+  roket tet1={.shootSpeed=500,.yawPlace=500,.yawDelta=37,.shootSpeedBase=4000,.yawPlaceBase=2700,.yawDeltaBase=200};//偏左摩擦轮速度慢
+  roket tet2={.shootSpeed=3175,.yawPlace=1500,.yawDelta=73,.shootSpeedBase=1000,.yawPlaceBase=700,.yawDeltaBase=-200};//偏右摩擦轮速度块
+  roket tet3={.shootSpeed=3500,.yawPlace=2500,.yawDelta=75,.shootSpeedBase=4000,.yawPlaceBase=2700,.yawDeltaBase=200};//偏左摩擦轮速度很快
+  roket tet4={.shootSpeed=3175,.yawPlace=300,.yawDelta=57,.shootSpeedBase=1000,.yawPlaceBase=700,.yawDeltaBase=-200};//偏右摩擦轮速度慢
   shootTaskInit(&tet1,&tet2,&tet3,&tet4);//按照1、2、3、4发射顺序填入飞镖
-  // shootTaskInit(&GD,&HRL,&ZJ,&ZTX);//按照1、2、3、4发射顺序填入飞镖
+ // shootTaskInit(&GD,&HRL,&ZJ,&ZTX);//按照1、2、3、4发射顺序填入飞镖
   //推杆电机和yaw电机初始化，方便限制电机动作
   while(!pushYawInit()){DWTRefreshTimeMs();//更新毫秒计时
     dartSysStateCheck();//各类限位状态查询
@@ -189,7 +189,7 @@ int main(void)
     minipc_upgrade(&minipc);//更新miniPC数据
     yawPlaceRefresh();//更新yaw电机数据
     pushPlaceRefreshSpeedy();//更新push电机数据
-
+    refreeDataCheck();//
     switch (mode)
     {
       case manual:manualTask();break;

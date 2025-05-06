@@ -79,4 +79,5 @@ void yawPlaceRefresh();
 void pushPlaceRefreshSpeedy();
 uint8_t pushYawInit();
 void fullAutoTask();
+void refreeDataCheck();
 #endif

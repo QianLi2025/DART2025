@@ -66,9 +66,50 @@ static inline bool is_bit_set_u16(uint16_t var, uint16_t mask) {
 static inline bool is_bit6_and_bit7_set_u16(uint16_t var) {
     return (var & (BIT_6 | BIT_7)) == (BIT_6 | BIT_7);
 }
+
 // ---- 提取 uint16_t 中第6、7位，组合成 0~3 的值 ----
 static inline uint8_t get_bits_6_7_u16(uint16_t var) {
     return (uint8_t)((var >> 6) & 0x03);  // 提取第6和7位（右移6位后取最低两位）
+}
+
+// ==== 新增: 通用位域提取函数 ====
+/**
+ * @brief 从 var 的 low 位到 high 位提取位域值
+ * @param var   输入值
+ * @param high  高位索引（0-31）
+ * @param low   低位索引（0-31），且 low <= high
+ * @return 提取后的无符号整型值
+ */
+static inline uint32_t get_bits_u32(uint32_t var, uint8_t high, uint8_t low) {
+    uint8_t width = high - low + 1;
+    uint32_t mask = ((1U << width) - 1U) << low;
+    return (var & mask) >> low;
+}
+
+/**
+ * @brief 从 uint16_t 类型 var 的 low 位到 high 位提取位域值
+ * @param var   输入值
+ * @param high  高位索引（0-15）
+ * @param low   低位索引（0-15），且 low <= high
+ * @return 提取后的无符号整型值
+ */
+static inline uint16_t get_bits_u16_var(uint16_t var, uint8_t high, uint8_t low) {
+    uint8_t width = high - low + 1;
+    uint16_t mask = (uint16_t)(((1U << width) - 1U) << low);
+    return (var & mask) >> low;
+}
+
+/**
+ * @brief 从 uint8_t 类型 var 的 low 位到 high 位提取位域值
+ * @param var   输入值
+ * @param high  高位索引（0-7）
+ * @param low   低位索引（0-7），且 low <= high
+ * @return 提取后的无符号整型值
+ */
+static inline uint8_t get_bits_u8_var(uint8_t var, uint8_t high, uint8_t low) {
+    uint8_t width = high - low + 1;
+    uint8_t mask = (uint8_t)(((1U << width) - 1U) << low);
+	  return (var & mask) >> low;
 }
 
 #ifdef __cplusplus

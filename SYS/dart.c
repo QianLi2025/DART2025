@@ -65,16 +65,7 @@ void checkControlMode(){
             case 2:dartState.shootGoal=1;break;//上，瞄准基地固定靶
             default:break;
         }
-        if(rc_ctrl.rc.ch[1]>500){if(dartState.fullAutoState==0){dartState.fullAutoState=1;}}
-        if(rc_ctrl.rc.ch[3]>500){//遥控模拟裁判系统数据，模拟裁判系统开始逻辑
-            
-            if(dartState.fullAutoState==1){dartState.fullAutoState=2;}
-            else if(dartState.fullAutoState==5){dartState.fullAutoState=6;}
-        }
-        if(rc_ctrl.rc.ch[3]<-500){//遥控模拟裁判系统数据,模拟裁判系统结束逻辑
-            if(dartState.fullAutoState<5){dartState.fullAutoState=5;dartState.ammoState=2;}
-            else if(dartState.fullAutoState<9&&dartState.fullAutoState>5){dartState.fullAutoState=9;}
-        }
+
     break;
     case 2:mode=semiAuto;//半自动模式
         if(dartState.semiAutoState!=0){//紧急停止
@@ -87,6 +78,28 @@ void checkControlMode(){
     }
 
 
+}
+
+void refreeDataCheck(){//检查裁判系统数据，修改自动挡模式飞镖数据
+    //比赛开始，跳转到第一发飞镖准备状态
+    if(rfData.game_status.game_progress==4&&dartState.fullAutoState==0){dartState.fullAutoState=1;}
+    //比赛结算直接跳转到停止状态
+    else if(rfData.game_status.game_progress==5){dartState.fullAutoState=9;}
+    //其它情况认为在准备阶段
+//    else{dartState.fullAutoState=0;}
+
+
+    //使用遥控器传递信息的逻辑，其优先级比裁判系统传递优先级较高
+    if(rc_ctrl.rc.ch[1]>500&&dartState.fullAutoState==0){dartState.fullAutoState=1;}//模拟比赛开始逻辑
+    if(rc_ctrl.rc.ch[3]>500){//遥控模拟裁判系统数据，模拟裁判系统飞镖舱门完全打开逻辑
+        
+        if(dartState.fullAutoState==1){dartState.fullAutoState=2;}
+        else if(dartState.fullAutoState==5){dartState.fullAutoState=6;}
+    }
+    if(rc_ctrl.rc.ch[3]<-500){//遥控模拟裁判系统数据,模拟裁判系统结束逻辑
+        if(dartState.fullAutoState<5){dartState.fullAutoState=5;dartState.ammoState=2;}
+        else if(dartState.fullAutoState<9&&dartState.fullAutoState>5){dartState.fullAutoState=9;}
+    }
 }
 
 void limitProtection(){
@@ -178,7 +191,7 @@ void dartSysStateCheck(void)
     dartState.magazineCurrentLimitPushed = (tc2 > 5000) || (tc2 < -5000);
     // 4. Yaw 位置超限：如果角度>3000，强制设为 2
     int16_t yawAng = D6020_motor1.absolute_angle;
-    if (yawAng > 3000) {yawPushed = 2;}
+    if (yawAng > 3260) {yawPushed = 2;}
     dartState.yawLimitPushed = yawPushed;
     // 5. 只要 yawLimitPushed 为1（触发轻触开关），就清零绝对角度
     if (yawPushed==1) {D6020_motor1.absolute_angle = 0;}
@@ -339,7 +352,7 @@ uint8_t shootPrepareFullAuto(uint8_t shootingMagazine,int16_t pushSet){
     return 0;
 }
 
-uint8_t SCYawPushPrepare(uint8_t needYawSet){//根据发射目标和发射发数自动准备yaw、推杆、摩擦轮位置和速度
+uint8_t SCYawPushPrepare(uint8_t needPushSet){//根据发射目标和发射发数自动准备yaw、推杆、摩擦轮位置和速度
     uint8_t returnValue=1;
     uint16_t shootingCircleSpeed=0;
     uint16_t yawPlace=0;
@@ -354,21 +367,45 @@ uint8_t SCYawPushPrepare(uint8_t needYawSet){//根据发射目标和发射发数
     default:break;
     }
     if(ammo==0||ammo==2){pushPlace=2400;}//若为第一发和第三发，则需要调整推杆位置，其它情况因为本身处于预置位所以不用调正
+    else if(ammo==1||ammo==3){pushPlace=4200;}
     if(ammo<2){magazine=1;}//第一第二发，弹夹为1
     else{magazine=2;}//第三第四发，弹夹为2
-    if(dartState.magazineSwitch==10*magazine+1||ammo==1||ammo==3){returnValue=pushSetPlace(pushPlace)*returnValue;}//若完成调整或不需要调整，则调整推杆
+    if(dartState.magazineSwitch==10*magazine+1||ammo==1||ammo==3){if(needPushSet){returnValue=pushSetPlace(pushPlace)*returnValue;}else{pushStop();}}//若完成调整或不需要调整，则调整推杆
     else{
         if (pushGoBack()){magazineSwitch(magazine);}       
         returnValue=0;
     }//未完成
     returnValue=shootingCircleSetSpeedWithSpeedCheck(shootingCircleSpeed)*returnValue;
-    if(needYawSet){returnValue=yawSetPlace(yawPlace)*returnValue;}
+    // if(needYawSet){returnValue=yawSetPlace(yawPlace)*returnValue;}
     if(minipc.no_data_time>5000||minipc.minipc2mcu.distance==10000){//判定miniPC是否离线,若离线则不调整
         returnValue=yawSetPlace(yawPlace)*returnValue;//调整yaw
     }
     else if(minipc.no_data_time<100){//minipc没离线，使用minipc校准yaw轴
         returnValue=yawSetPlaceVisual(yawDelta)*returnValue;
     }
+    return returnValue;
+}
+
+uint8_t SCYawPushPrepareHalf(){//根据发射目标和发射发数自动准备yaw、推杆、摩擦轮位置和速度
+    uint8_t returnValue=1;
+    uint16_t shootingCircleSpeed=0;
+    uint16_t yawPlace=0;
+    uint8_t ammo=dartState.ammoState;
+    uint16_t yawDelta=0;
+    switch (dartState.shootGoal)
+    {
+    case 0:shootingCircleSpeed=roketShootTask.shootSpeed[ammo];yawPlace=roketShootTask.shootYawPlace[ammo];yawDelta=roketShootTask.miniPcYawDelta[ammo]; break;
+    case 1:shootingCircleSpeed=roketShootTask.shootSpeedBase[ammo];yawPlace=roketShootTask.shootYawPlaceBase[ammo];yawDelta=roketShootTask.miniPcYawDeltaBase[ammo]; break;
+    default:break;
+    }
+    returnValue=shootingCircleSetSpeedWithSpeedCheck(shootingCircleSpeed)*returnValue;
+    if(minipc.no_data_time>5000||minipc.minipc2mcu.distance==10000){//判定miniPC是否离线,若离线则不调整
+        returnValue=yawSetPlace(yawPlace)*returnValue;//调整yaw
+    }
+    else if(minipc.no_data_time<500){//minipc没离线，使用minipc校准yaw轴
+        returnValue=yawSetPlaceVisual(yawDelta)*returnValue;
+    }
+    pushStop();
     return returnValue;
 }
 
@@ -488,13 +525,13 @@ void fullAutoTask(){
         {
         case 0:shootingCircleStop();break;//比赛前状态，摩擦轮一动不敢动
         case 1:SCYawPushPrepare(1);break;//第一次发射准备,调整yaw角度至预置位
-        case 2:if(roketShootFull()){dartState.fullAutoState=3;dartState.ammoState=1;}; break;//第一次发射
-        case 3:if(SCYawPushPrepare(0)){dartState.fullAutoState=4;}break;//第二次发射准备
-        case 4:if(roketShootFull()){dartState.fullAutoState=5;dartState.ammoState=2;}; break;//第二次发射
+        case 2:if(roketShootFull()==1){dartState.fullAutoState=3;dartState.ammoState=1;dartState.visualJiaoZhun=0;}; break;//第一次发射
+        case 3:if(SCYawPushPrepareHalf()==1){dartState.fullAutoState=4;}break;
+        case 4:if(roketShootFull()==1){dartState.fullAutoState=5;dartState.ammoState=2;dartState.visualJiaoZhun=0;}; break;//第二次发射
         case 5:SCYawPushPrepare(1);break;//第三次发射准备
-        case 6:if(roketShootFull()){dartState.fullAutoState=7;dartState.ammoState=3;}; break;//第三次发射
-        case 7:if(SCYawPushPrepare(0)){dartState.fullAutoState=8;}break;//第四次发射准备
-        case 8:if(roketShootFull()){dartState.fullAutoState=9;dartState.ammoState=4;}; break;//第三次发射
+        case 6:if(roketShootFull()){dartState.fullAutoState=7;dartState.ammoState=3;dartState.visualJiaoZhun=0;}; break;//第三次发射
+        case 7:if(SCYawPushPrepareHalf()){dartState.fullAutoState=8;}break;//第四次发射准备
+        case 8:if(roketShootFull()){dartState.fullAutoState=9;dartState.ammoState=4;dartState.visualJiaoZhun=0;}; break;//第三次发射
         case 9:shootingCircleStop();break;//比赛结束状态，摩擦轮一动不敢动
         default:
             break;
