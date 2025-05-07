@@ -8,10 +8,10 @@ dart2025z/can_user.o: ..\App\can_user.c ..\App\can_user.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f446xx.h \
   ..\Drivers\CMSIS\Include\core_cm4.h \
   E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\stdint.h \
-  E:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\cmsis_version.h \
-  E:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\cmsis_compiler.h \
-  E:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\cmsis_armclang.h \
-  E:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\mpu_armv7.h \
+  e:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\cmsis_version.h \
+  e:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\cmsis_compiler.h \
+  e:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\cmsis_armclang.h \
+  e:\project\Eide\cubeMX\DART2025Z\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   E:\project_app\Keil\Keil_V5\ARM\ARMCLANG\include\stddef.h \

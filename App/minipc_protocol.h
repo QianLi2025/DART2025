@@ -17,13 +17,13 @@ typedef struct
     struct//__packed 要求整个结构体定义依字节对齐，如果没有这个则会在内存中依字（4字节）对齐
     {
         uint8_t header; // = 0x5A;
-        uint8_t is_rune;
-        uint8_t detect_color; // 5-red
+        uint8_t ammo;//第几发飞镖：原is_Rune
+        uint8_t isVisual; //是否使用了视觉校准？ detect_color
         uint8_t is_reset;
-        float roll;  // r:
-        float yaw;   // rad
-        float pitch; //
-        float v0;
+        float time;  // time(ms):原roll
+        float yaw;   // yaw(unkown)
+        float pitch; //pitch
+        float v0;//原v0
         float motor_speed;
         uint16_t checksum; // = 0; // c! 16位crc校验
     } mcu2minipc;

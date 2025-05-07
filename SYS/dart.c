@@ -79,6 +79,16 @@ void checkControlMode(){
 
 
 }
+//向minipc发送yaw，时间，第几发，是否使用视觉校准的调试信息
+void minipcDebugDataSend(const float * yaw,const float * t,const uint8_t * ammo,const uint8_t * isVisual){
+    minipc.mcu2minipc.yaw=*yaw;
+    minipc.mcu2minipc.time=*t;
+    minipc.mcu2minipc.ammo=*ammo;
+    minipc.mcu2minipc.isVisual=*isVisual;
+    minipc_upgrade(&minipc);
+    CDC_Transmit_FS(minipc.mcu2minipc_buf,sizeof(minipc.mcu2minipc_buf));
+}
+
 
 void refreeDataCheck(){//检查裁判系统数据，修改自动挡模式飞镖数据
     //比赛开始，跳转到第一发飞镖准备状态
@@ -87,7 +97,31 @@ void refreeDataCheck(){//检查裁判系统数据，修改自动挡模式飞镖�
     else if(rfData.game_status.game_progress==5){dartState.fullAutoState=9;}
     //其它情况认为在准备阶段
 //    else{dartState.fullAutoState=0;}
-
+    switch (rfData.dart_client_cmd.dart_launch_opening_status)
+    {
+    case 0:
+        switch (dartState.fullAutoState)
+        {
+        case 1:dartState.fullAutoState=2;break;//比赛已经开始，飞镖架处于第一组飞镖准备状态
+        case 5:dartState.fullAutoState=6;break;//比赛已经开始，飞镖架处于第二组飞镖准备状态
+        default:break;
+        }
+    break;
+    case 2:
+        switch (dartState.fullAutoState)//使用switch方便后续拓展
+        {
+            case 2:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 3:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 4:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 6:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 7:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 8:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            default:break;
+        }
+    break;
+    default:
+        break;
+    }
 
     //使用遥控器传递信息的逻辑，其优先级比裁判系统传递优先级较高
     if(rc_ctrl.rc.ch[1]>500&&dartState.fullAutoState==0){dartState.fullAutoState=1;}//模拟比赛开始逻辑
@@ -525,14 +559,38 @@ void fullAutoTask(){
         {
         case 0:shootingCircleStop();break;//比赛前状态，摩擦轮一动不敢动
         case 1:SCYawPushPrepare(1);break;//第一次发射准备,调整yaw角度至预置位
-        case 2:if(roketShootFull()==1){dartState.fullAutoState=3;dartState.ammoState=1;dartState.visualJiaoZhun=0;}; break;//第一次发射
-        case 3:if(SCYawPushPrepareHalf()==1){dartState.fullAutoState=4;}break;
-        case 4:if(roketShootFull()==1){dartState.fullAutoState=5;dartState.ammoState=2;dartState.visualJiaoZhun=0;}; break;//第二次发射
+        case 2:if(roketShootFull()){
+            dartState.fullAutoState=3;
+            dartState.ammoState=1;
+            float nowMs=DWTGetTimeMs();
+            minipcDebugDataSend(&D6020_motor1.absolute_angle,&nowMs,&dartState.ammoState,&dartState.visualJiaoZhun);
+            dartState.visualJiaoZhun=0;
+        }; break;//第一次发射
+        case 3:if(SCYawPushPrepareHalf()){dartState.fullAutoState=4;}break;
+        case 4:if(roketShootFull()){
+            dartState.fullAutoState=5;
+            dartState.ammoState=2;
+            float nowMs=DWTGetTimeMs();
+            minipcDebugDataSend(&D6020_motor1.absolute_angle,&nowMs,&dartState.ammoState,&dartState.visualJiaoZhun);
+            dartState.visualJiaoZhun=0;
+        }; break;//第二次发射
         case 5:SCYawPushPrepare(1);break;//第三次发射准备
-        case 6:if(roketShootFull()){dartState.fullAutoState=7;dartState.ammoState=3;dartState.visualJiaoZhun=0;}; break;//第三次发射
+        case 6:if(roketShootFull()){
+            dartState.fullAutoState=7;
+            dartState.ammoState=3;
+            float nowMs=DWTGetTimeMs();
+            minipcDebugDataSend(&D6020_motor1.absolute_angle,&nowMs,&dartState.ammoState,&dartState.visualJiaoZhun);
+            dartState.visualJiaoZhun=0;
+        }; break;//第三次发射
         case 7:if(SCYawPushPrepareHalf()){dartState.fullAutoState=8;}break;//第四次发射准备
-        case 8:if(roketShootFull()){dartState.fullAutoState=9;dartState.ammoState=4;dartState.visualJiaoZhun=0;}; break;//第三次发射
-        case 9:shootingCircleStop();break;//比赛结束状态，摩擦轮一动不敢动
+        case 8:if(roketShootFull()){
+            dartState.fullAutoState=9;
+            dartState.ammoState=4;
+            float nowMs=DWTGetTimeMs();
+            minipcDebugDataSend(&D6020_motor1.absolute_angle,&nowMs,&dartState.ammoState,&dartState.visualJiaoZhun);
+            dartState.visualJiaoZhun=0;
+        }; break;//第三次发射
+        case 9:emergencyStop();break;//比赛结束状态，摩擦轮一动不敢动
         default:
             break;
         }

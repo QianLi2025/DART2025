@@ -1,6 +1,14 @@
 #include "minipc_protocol.h"
 
-minipc_t minipc; //定义一个全局变量，存放数据包
+minipc_t minipc={.mcu2minipc.ammo=0,
+                 .mcu2minipc.header=0X5A,
+                 .mcu2minipc.isVisual=0,
+                 .mcu2minipc.is_reset=0,
+                 .mcu2minipc.time=0,
+                 .mcu2minipc.yaw=0,
+                 .mcu2minipc.pitch=0,
+                 .mcu2minipc.v0=0,
+                 .mcu2minipc.motor_speed=0}; //定义一个全局变量，存放数据包
 
 //在接收数据的回调中使用，接收数据到缓冲区，并清空no_data_time
 void minipc_rec(minipc_t *pc, uint8_t pc_data_buf[])
