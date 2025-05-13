@@ -1,7 +1,6 @@
 #include "minipc_protocol.h"
 
 minipc_t minipc={.mcu2minipc.ammo=0,
-                 .mcu2minipc.header=0X5A,
                  .mcu2minipc.isVisual=0,
                  .mcu2minipc.is_reset=0,
                  .mcu2minipc.time=0,

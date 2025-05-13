@@ -54,15 +54,174 @@ void shootTaskInit(roket *r1,roket *r2,roket *r3,roket *r4){
     roketShootTask.miniPcYawDeltaBase[3]=r4->yawDeltaBase;
 }
 
+void refreeDataCheck(){//检查裁判系统数据，修改自动挡模式飞镖数据
+    //比赛开始，跳转到第一发飞镖准备状态
+    if(rfData.game_status.game_progress==4&&dartState.fullAutoState==0){dartState.fullAutoState=1;}
+    //比赛结算直接跳转到停止状态
+    else if(rfData.game_status.game_progress==5){dartState.fullAutoState=9;}
+    //其它情况认为在准备阶段
+//    else{dartState.fullAutoState=0;}
+    switch (dartState.cangmenState)
+    {
+    case 2://第一次完全开启
+        switch (dartState.fullAutoState)
+        {
+        case 1:dartState.fullAutoState=2;break;//比赛已经开始，飞镖架处于第一组飞镖准备状态
+        //case 5:dartState.fullAutoState=6;break;//比赛已经开始，飞镖架处于第二组飞镖准备状态
+        default:break;
+        }
+    break;
+    case 3://第一次正在关闭
+        switch (dartState.fullAutoState)//使用switch方便后续拓展
+        {
+            case 2:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 3:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 4:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 6:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 7:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 8:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            default:break;
+        }
+    break;
+    case 4://第一次完全关闭
+        switch (dartState.fullAutoState)//使用switch方便后续拓展
+        {
+            case 2:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 3:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 4:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 6:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 7:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 8:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            default:break;
+        }
+    break;
+    case 6://第二次完全打开
+        switch (dartState.fullAutoState)
+        {
+        case 1:dartState.fullAutoState=2;break;//比赛已经开始，飞镖架处于第一组飞镖准备状态
+        case 5:dartState.fullAutoState=6;break;//比赛已经开始，飞镖架处于第二组飞镖准备状态
+        default:break;
+        }
+    break;
+    case 7://第二次正在关闭
+        switch (dartState.fullAutoState)//使用switch方便后续拓展
+        {
+            case 2:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 3:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 4:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 6:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 7:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 8:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            default:break;
+        }
+    break;
+    case 8://第二次完全关闭
+        switch (dartState.fullAutoState)//使用switch方便后续拓展
+        {
+            case 2:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 3:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 4:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 6:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 7:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            case 8:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
+            default:break;
+        }
+    break;
+    default:
+        break;
+    }
+
+    
+    
+}
+void remoteControllerDataCheck(){
+        //使用遥控器传递信息的逻辑，其优先级比裁判系统传递优先级较高
+    if(rc_ctrl.rc.ch[1]>500&&dartState.fullAutoState==0){dartState.fullAutoState=1;}//模拟比赛开始逻辑
+    if(rc_ctrl.rc.ch[3]>500){//遥控模拟裁判系统数据，模拟裁判系统飞镖舱门完全打开逻辑
+        
+        if(dartState.fullAutoState==1){dartState.fullAutoState=2;}
+        else if(dartState.fullAutoState==5){dartState.fullAutoState=6;}
+    }
+    if(rc_ctrl.rc.ch[3]<-500){//遥控模拟裁判系统数据,模拟裁判系统结束逻辑
+        if(dartState.fullAutoState<5){dartState.fullAutoState=5;dartState.ammoState=2;}
+        else if(dartState.fullAutoState<9&&dartState.fullAutoState>5){dartState.fullAutoState=9;}
+    }
+}
+
+void checkCangmenState(){//检测舱门的状态，必须放在checkControlMode前面执行
+    switch (dartState.cangmenState)
+    {
+    case 0://1舱门正在第一次打开，0舱门没有动作
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==2){
+            dartState.cangmenState=1;
+        }
+    break;
+    case 1://2舱门第一次完全打开
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==0){
+            dartState.cangmenState=2;
+        }
+    break;
+    case 2://3舱门第一次正在关闭
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==2){
+            dartState.cangmenState=3;
+        }
+    break;
+    case 3://4舱门第一次完全关闭
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==1){
+            dartState.cangmenState=4;
+        }
+    break;
+    case 4://5舱门第二次正在开启
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==2){
+            dartState.cangmenState=5;
+        }
+    break;
+    case 5://6舱门第二次完全开启
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==0){
+            dartState.cangmenState=6;
+        }
+    break;
+    case 6://7舱门第二次正在关闭
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==2){
+            dartState.cangmenState=7;
+        }
+    break;
+    case 7://8舱门第二次完全关闭
+        if(rfData.game_status.game_progress==4&&rfData.dart_client_cmd.dart_launch_opening_status==1){
+            dartState.cangmenState=8;
+        }
+    break;
+    default:
+    break;
+    }
+    
+}
+
 void checkControlMode(){
     switch (rc_ctrl.rc.s[1])//遥控器选择控制模式
     {
     case 1:mode=fullAuto;//全自动模式fuli auto shooter
         switch (rc_ctrl.rc.s[0])
         {//裁判系统测试ok
-            case 1:dartState.shootGoal=get_bits_6_7_u16(rfData.dart_info.dart_info);break;//下，采用裁判系统的回传数据作为发射目标的选择依据
-            case 3:dartState.shootGoal=0;break;//中，瞄准前哨
-            case 2:dartState.shootGoal=1;break;//上，瞄准基地固定靶
+            case 1:
+                dartState.shootGoal=get_bits_6_7_u16(rfData.dart_info.dart_info);
+                switch (dartState.shootGoal)//目前来讲，随机固定和随即移动靶的目标都选为基地
+                {
+                case 2:dartState.shootGoal=1;break;
+                case 3:dartState.shootGoal=1;break;
+                default:break;
+                }
+                refreeDataCheck();
+                remoteControllerDataCheck();
+            break;//下，采用裁判系统的回传数据作为发射目标的选择依据
+            case 3:
+                dartState.shootGoal=0;
+                remoteControllerDataCheck();
+            break;//中，瞄准前哨
+            case 2:
+                dartState.shootGoal=1;
+                remoteControllerDataCheck();
+            break;//上，瞄准基地固定靶
             default:break;
         }
 
@@ -86,54 +245,8 @@ void minipcDebugDataSend(const float * yaw,const float * t,const uint8_t * ammo,
     minipc.mcu2minipc.ammo=*ammo;
     minipc.mcu2minipc.isVisual=*isVisual;
     minipc_upgrade(&minipc);
-    CDC_Transmit_FS(minipc.mcu2minipc_buf,sizeof(minipc.mcu2minipc_buf));
-}
-
-
-void refreeDataCheck(){//检查裁判系统数据，修改自动挡模式飞镖数据
-    //比赛开始，跳转到第一发飞镖准备状态
-    if(rfData.game_status.game_progress==4&&dartState.fullAutoState==0){dartState.fullAutoState=1;}
-    //比赛结算直接跳转到停止状态
-    else if(rfData.game_status.game_progress==5){dartState.fullAutoState=9;}
-    //其它情况认为在准备阶段
-//    else{dartState.fullAutoState=0;}
-    switch (rfData.dart_client_cmd.dart_launch_opening_status)
-    {
-    case 0:
-        switch (dartState.fullAutoState)
-        {
-        case 1:dartState.fullAutoState=2;break;//比赛已经开始，飞镖架处于第一组飞镖准备状态
-        case 5:dartState.fullAutoState=6;break;//比赛已经开始，飞镖架处于第二组飞镖准备状态
-        default:break;
-        }
-    break;
-    case 2:
-        switch (dartState.fullAutoState)//使用switch方便后续拓展
-        {
-            case 2:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
-            case 3:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
-            case 4:dartState.fullAutoState=5;dartState.visualJiaoZhun=0;dartState.ammoState=2;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
-            case 6:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
-            case 7:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
-            case 8:dartState.fullAutoState=9;break;//飞镖架处于飞镖发射状态，跳转至下一次准备
-            default:break;
-        }
-    break;
-    default:
-        break;
-    }
-
-    //使用遥控器传递信息的逻辑，其优先级比裁判系统传递优先级较高
-    if(rc_ctrl.rc.ch[1]>500&&dartState.fullAutoState==0){dartState.fullAutoState=1;}//模拟比赛开始逻辑
-    if(rc_ctrl.rc.ch[3]>500){//遥控模拟裁判系统数据，模拟裁判系统飞镖舱门完全打开逻辑
-        
-        if(dartState.fullAutoState==1){dartState.fullAutoState=2;}
-        else if(dartState.fullAutoState==5){dartState.fullAutoState=6;}
-    }
-    if(rc_ctrl.rc.ch[3]<-500){//遥控模拟裁判系统数据,模拟裁判系统结束逻辑
-        if(dartState.fullAutoState<5){dartState.fullAutoState=5;dartState.ammoState=2;}
-        else if(dartState.fullAutoState<9&&dartState.fullAutoState>5){dartState.fullAutoState=9;}
-    }
+    minipc.mcu2minipc_buf[sizeof(minipc.mcu2minipc)]=0xaa;
+    CDC_Transmit_FS(minipc.mcu2minipc_buf,sizeof(minipc.mcu2minipc)+1);
 }
 
 void limitProtection(){
@@ -202,8 +315,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
     if(huart->Instance==UART5)
 	{
 		//把收到的一包数据通过串口回传
-		HAL_UART_Transmit(&huart5,rfDataBuf,Size,0xff);
-        referee_fbkdata(&rfData,rfDataBuf);
+		//HAL_UART_Transmit(&huart5,rfDataBuf,Size,0xff);
+        referee_fbkdata(&rfData,rfDataBuf,150);
 		//再次开启空闲中断接收，不然只会接收一次数据
 		HAL_UARTEx_ReceiveToIdle_IT(&huart5,rfDataBuf,150);
 	}
@@ -552,7 +665,8 @@ void fullAutoTask(){
         shootingCircleStop();//比赛前摩擦轮一动不敢动
         if(pushYawInit()){
         dartState.ammoState=0;
-        dartState.fullAutoState=0;}
+        dartState.fullAutoState=0;
+        dartState.cangmenState=0;}
     }
     else{
         switch (dartState.fullAutoState)

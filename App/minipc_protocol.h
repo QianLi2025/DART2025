@@ -13,7 +13,7 @@ typedef struct
     uint8_t mcu2minipc_buf[100];
     float no_data_time;
     float pack_loss_rate;
-    #pragma pack(1)
+    #pragma pack(push,1)
     struct//__packed 要求整个结构体定义依字节对齐，如果没有这个则会在内存中依字（4字节）对齐
     {
         uint8_t header; // = 0x5A;
@@ -37,7 +37,7 @@ typedef struct
         float distance;
         uint16_t checksum; // = 0;
     } minipc2mcu;
-    #pragma pack()
+    #pragma pack(pop)
     float minipc_count;      //用于记时
     uint8_t rx_pack_state[100]; //记录当前及100个数据包中的接收状态，0什么都不表示，1表示接收正常，2表示丢包
 } minipc_t;

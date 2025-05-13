@@ -37,6 +37,7 @@ typedef struct{
     uint8_t fullAutoState;
     uint8_t shootGoal;//打击目标 0前哨 1基地 2随机固定 3随机移动
     uint8_t ammoState;//弹夹剩余的飞镖数量，通过位操作判断，第零位代表1号飞镖，第一位为2号，以此类推 1代表已经被发射，0代表还未发射
+    uint8_t cangmenState;//弹舱门状态 0关闭 1第一次正在打开 2第一次完全打开 3第一次正在关闭 4第一次完全关闭 5第二次正在打开 6第二次完全打开 7第二次正在关闭 8第二次完全关闭
 }dartSysState_t;
 typedef struct 
 {
@@ -81,4 +82,5 @@ void pushPlaceRefreshSpeedy();
 uint8_t pushYawInit();
 void fullAutoTask();
 void refreeDataCheck();
+void checkCangmenState();
 #endif

@@ -103,10 +103,10 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   roket DD={.shootSpeed=3000,.yawPlace=870,.yawDelta=0};
 	roket WC2={.shootSpeed=3100,.yawPlace=970,.yawDelta=0};
 
-  roket SJ={.shootSpeed=3150,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};
-  roket PP={.shootSpeed=3150,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};
-  roket NC={.shootSpeed=3150,.yawPlace=970,.yawDelta=77,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};
-  roket NH={.shootSpeed=3120,.yawPlace=940,.yawDelta=65,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};
+  roket SJ={.shootSpeed=3130,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=106};
+  roket PP={.shootSpeed=3100,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=111};
+  roket NC={.shootSpeed=3080,.yawPlace=970,.yawDelta=77,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=101};
+  roket NH={.shootSpeed=3070,.yawPlace=940,.yawDelta=65,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=97};
 
   roket GD={.shootSpeed=3140,.yawPlace=970,.yawDelta=37,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};//3140
   roket HRL={.shootSpeed=3175,.yawPlace=970,.yawDelta=73,.shootSpeedBase=3800,.yawPlaceBase=2700,.yawDeltaBase=263};//3175
@@ -117,8 +117,8 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   roket tet2={.shootSpeed=3175,.yawPlace=1500,.yawDelta=73,.shootSpeedBase=1000,.yawPlaceBase=700,.yawDeltaBase=-200};//偏右摩擦轮速度块
   roket tet3={.shootSpeed=3500,.yawPlace=2500,.yawDelta=75,.shootSpeedBase=4000,.yawPlaceBase=2700,.yawDeltaBase=200};//偏左摩擦轮速度很快
   roket tet4={.shootSpeed=3175,.yawPlace=300,.yawDelta=57,.shootSpeedBase=1000,.yawPlaceBase=700,.yawDeltaBase=-200};//偏右摩擦轮速度慢
-  shootTaskInit(&tet1,&tet2,&tet3,&tet4);//按照1、2、3、4发射顺序填入飞镖
-	//shootTaskInit(&SJ,&PP,&NC,&NH);//按照1、2、3、4发射顺序填入飞镖
+  //shootTaskInit(&tet1,&tet2,&tet3,&tet4);//按照1、2、3、4发射顺序填入飞镖
+	shootTaskInit(&SJ,&PP,&NC,&NH);//按照1、2、3、4发射顺序填入飞镖
  // shootTaskInit(&GD,&HRL,&ZJ,&ZTX);//按照1、2、3、4发射顺序填入飞镖
   //推杆电机和yaw电机初始化，方便限制电机动作
   while(!pushYawInit()){DWTRefreshTimeMs();//更新毫秒计时
@@ -146,7 +146,7 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   * @retval int
   */
 int main(void)
-  {
+{
 
   /* USER CODE BEGIN 1 */
 
@@ -184,13 +184,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    checkCangmenState();//弹舱门状态检测
     DWTRefreshTimeMs();//更新毫秒计时
     dartSysStateCheck();//各类限位状态查询
     checkControlMode();//遥控器选择控制模式
     minipc_upgrade(&minipc);//更新miniPC数据
     yawPlaceRefresh();//更新yaw电机数据
     pushPlaceRefreshSpeedy();//更新push电机数据
-    refreeDataCheck();//
     switch (mode)
     {
       case manual:manualTask();break;
