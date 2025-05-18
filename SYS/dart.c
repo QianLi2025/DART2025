@@ -67,7 +67,6 @@ void refreeDataCheck(){//检查裁判系统数据，修改自动挡模式飞镖�
         switch (dartState.fullAutoState)
         {
         case 1:dartState.fullAutoState=2;break;//比赛已经开始，飞镖架处于第一组飞镖准备状态
-        //case 5:dartState.fullAutoState=6;break;//比赛已经开始，飞镖架处于第二组飞镖准备状态
         default:break;
         }
     break;
@@ -281,6 +280,23 @@ void limitProtection(){
             D2006_motor1.set_voltage=pid_calc(&D2006_motor1.motor_speed_pid, D2006_motor1.target_speed, D2006_motor1.rotor_speed);
         }   
     }
+    // if(dartState.pushCurrentLimitPushed>99){//电流限位
+    //     D2006_motor1.set_voltage=0;D2006_motor1.target_speed=0;
+    //     D2006_motor1.set_voltage=pid_calc(&D2006_motor1.motor_speed_pid, D2006_motor1.target_speed, D2006_motor1.rotor_speed);
+    // }
+    switch (dartState.pushCurrentLimitPushed)
+    {
+    case 100:
+        D2006_motor1.set_voltage=0;D2006_motor1.target_speed=100;
+        D2006_motor1.set_voltage=pid_calc(&D2006_motor1.motor_speed_pid, D2006_motor1.target_speed, D2006_motor1.rotor_speed);
+    break;
+    case -100:
+        D2006_motor1.set_voltage=0;D2006_motor1.target_speed=-100;
+        D2006_motor1.set_voltage=pid_calc(&D2006_motor1.motor_speed_pid, D2006_motor1.target_speed, D2006_motor1.rotor_speed);
+        break;
+    default:
+        break;
+    }
 }
 void calAndSendMotor(){//计算和发送电机控制量
     D2006_motor1.set_voltage=pid_calc(&D2006_motor1.motor_speed_pid, D2006_motor1.target_speed, D2006_motor1.rotor_speed);
@@ -332,7 +348,20 @@ void dartSysStateCheck(void)
     dartState.pushLowerLimitPushed = pushLowerLimitCheck();
     // 2. 推杆电机电流超限检测（|t|>5000）
     int16_t tc1 = D2006_motor1.torque_current;
-    dartState.pushCurrentLimitPushed = (tc1 > 5000) || (tc1 < -5000);
+    // dartState.pushCurrentLimitPushed = (tc1 > 4000) ? 1 : ((tc1 < -4000) ? 2 : 0);
+    if(tc1>1000){
+        if(dartState.pushCurrentLimitPushed<100){
+            dartState.pushCurrentLimitPushed++;
+        }
+    }
+    else if(tc1<-1000){
+        if(dartState.pushCurrentLimitPushed>-100){
+            dartState.pushCurrentLimitPushed--;
+        }
+    }
+    else{
+        dartState.pushCurrentLimitPushed=0;
+    }
     // 3. 弹夹电机电流超限检测
     int16_t tc2 = D2006_motor2.torque_current;
     dartState.magazineCurrentLimitPushed = (tc2 > 5000) || (tc2 < -5000);

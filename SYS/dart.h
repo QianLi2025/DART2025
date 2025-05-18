@@ -22,7 +22,7 @@ typedef struct{
     uint8_t yawLimitPushed;//yaw限位是否触发 1轻触开关限位触发，2范围限制触发
     uint8_t pushUpperLimitPushed;//推杆上限位是否触发
     uint8_t pushLowerLimitPushed;//推杆下限位是否触发
-    uint8_t pushCurrentLimitPushed;//推杆电流限位是否触发
+    int16_t pushCurrentLimitPushed;//推杆电流限位是否触发 100上电流限位触发 -100下电流限位触发
     uint8_t magazineCurrentLimitPushed;//弹仓电流限位是否触发
 
     uint8_t magazineSwitch;//切换弹舱状态

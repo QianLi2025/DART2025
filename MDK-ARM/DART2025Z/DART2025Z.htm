@@ -3,9 +3,9 @@
 <title>Static Call Graph - [DART2025Z\DART2025Z.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DART2025Z\DART2025Z.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Tue May 13 23:43:31 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Sun May 18 07:33:49 2025
 <BR><P>
-<H3>Maximum Stack Usage =        556 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        580 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 <P>
@@ -268,7 +268,7 @@ Global Symbols
 <P><STRONG><a name="[1ce]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[84]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 556 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 580 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -2333,7 +2333,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[16c]"></a>calAndSendMotor</STRONG> (Thumb, 492 bytes, Stack size 48 bytes, dart.o(.text.calAndSendMotor))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = calAndSendMotor &rArr; limitProtection &rArr; pid_calc
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;limitProtection
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_calc
@@ -2387,8 +2387,8 @@ Global Symbols
 <LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskInit
 </UL>
 
-<P><STRONG><a name="[179]"></a>dartSysStateCheck</STRONG> (Thumb, 296 bytes, Stack size 32 bytes, dart.o(.text.dartSysStateCheck))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = dartSysStateCheck &rArr; yawLimitCheck &rArr; HAL_GPIO_ReadPin
+<P><STRONG><a name="[179]"></a>dartSysStateCheck</STRONG> (Thumb, 352 bytes, Stack size 24 bytes, dart.o(.text.dartSysStateCheck))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = dartSysStateCheck &rArr; yawLimitCheck &rArr; HAL_GPIO_ReadPin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yawLimitCheck
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushLowerLimitCheck
@@ -2425,8 +2425,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[16e]"></a>limitProtection</STRONG> (Thumb, 480 bytes, Stack size 40 bytes, dart.o(.text.limitProtection))
-<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = limitProtection &rArr; pid_calc
+<P><STRONG><a name="[16e]"></a>limitProtection</STRONG> (Thumb, 638 bytes, Stack size 48 bytes, dart.o(.text.limitProtection))
+<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_calc
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pidReset
@@ -2456,7 +2456,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[85]"></a>main</STRONG> (Thumb, 152 bytes, Stack size 16 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 556 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 580 + Unknown Stack Size
 <LI>Call Chain = main &rArr; taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fullAutoTask
@@ -2637,7 +2637,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[181]"></a>pushYawInit</STRONG> (Thumb, 180 bytes, Stack size 16 bytes, dart.o(.text.pushYawInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = pushYawInit &rArr; dartSysStateCheck &rArr; yawLimitCheck &rArr; HAL_GPIO_ReadPin
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = pushYawInit &rArr; dartSysStateCheck &rArr; yawLimitCheck &rArr; HAL_GPIO_ReadPin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dartSysStateCheck
 <LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushSetSpeed
@@ -2762,8 +2762,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shootingCircleSetSpeedWithSpeedCheck
 </UL>
 
-<P><STRONG><a name="[187]"></a>taskInit</STRONG> (Thumb, 936 bytes, Stack size 424 bytes, main.o(.text.taskInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 540<LI>Call Chain = taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
+<P><STRONG><a name="[187]"></a>taskInit</STRONG> (Thumb, 948 bytes, Stack size 440 bytes, main.o(.text.taskInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 564<LI>Call Chain = taskInit &rArr; calAndSendMotor &rArr; limitProtection &rArr; pid_calc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_ReceiveToIdle_IT
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay

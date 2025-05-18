@@ -103,24 +103,27 @@ void taskInit(){//只需要执行一次的初始化函数，在系统上电时�
   roket DD={.shootSpeed=3000,.yawPlace=870,.yawDelta=0};
 	roket WC2={.shootSpeed=3100,.yawPlace=970,.yawDelta=0};
 
-  roket SJ={.shootSpeed=3130,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=106};
-  roket PP={.shootSpeed=3100,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=111};
-  roket NC={.shootSpeed=3080,.yawPlace=970,.yawDelta=77,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=101};
-  roket NH={.shootSpeed=3070,.yawPlace=940,.yawDelta=65,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=97};
+  roket SJ={.shootSpeed=3130,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2500,.yawDeltaBase=176};//+5
+  roket PP={.shootSpeed=3100,.yawPlace=970,.yawDelta=120,.shootSpeedBase=3775,.yawPlaceBase=2500,.yawDeltaBase=163};//+5
+  roket NC={.shootSpeed=3080,.yawPlace=970,.yawDelta=77,.shootSpeedBase=3775,.yawPlaceBase=2500,.yawDeltaBase=176};//+5
+  roket NH={.shootSpeed=3070,.yawPlace=940,.yawDelta=65,.shootSpeedBase=3775,.yawPlaceBase=2500,.yawDeltaBase=157};//+10  
 
-  roket GD={.shootSpeed=3140,.yawPlace=970,.yawDelta=37,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=92};//3140
-  roket HRL={.shootSpeed=3175,.yawPlace=970,.yawDelta=73,.shootSpeedBase=3800,.yawPlaceBase=2700,.yawDeltaBase=263};//3175
-  roket ZJ={.shootSpeed=3185,.yawPlace=970,.yawDelta=75,.shootSpeedBase=3770,.yawPlaceBase=2700,.yawDeltaBase=90};
-  roket ZTX={.shootSpeed=3185,.yawPlace=970,.yawDelta=57,.shootSpeedBase=3770,.yawPlaceBase=2700,.yawDeltaBase=90};
+  roket HN={.shootSpeed=3140,.yawPlace=970,.yawDelta=37,.shootSpeedBase=3815,.yawPlaceBase=2700,.yawDeltaBase=185};//3140	
+	
+  roket GD={.shootSpeed=3140,.yawPlace=970,.yawDelta=37,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=181};//3140
+  roket HRL={.shootSpeed=3175,.yawPlace=970,.yawDelta=73,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=181};//3175
+  roket ZJ={.shootSpeed=3185,.yawPlace=970,.yawDelta=75,.shootSpeedBase=3790,.yawPlaceBase=2700,.yawDeltaBase=150};
+  roket ZTX={.shootSpeed=3185,.yawPlace=970,.yawDelta=57,.shootSpeedBase=3775,.yawPlaceBase=2700,.yawDeltaBase=105};
 
   roket tet1={.shootSpeed=500,.yawPlace=500,.yawDelta=37,.shootSpeedBase=4000,.yawPlaceBase=2700,.yawDeltaBase=200};//偏左摩擦轮速度慢
   roket tet2={.shootSpeed=3175,.yawPlace=1500,.yawDelta=73,.shootSpeedBase=1000,.yawPlaceBase=700,.yawDeltaBase=-200};//偏右摩擦轮速度块
   roket tet3={.shootSpeed=3500,.yawPlace=2500,.yawDelta=75,.shootSpeedBase=4000,.yawPlaceBase=2700,.yawDeltaBase=200};//偏左摩擦轮速度很快
   roket tet4={.shootSpeed=3175,.yawPlace=300,.yawDelta=57,.shootSpeedBase=1000,.yawPlaceBase=700,.yawDeltaBase=-200};//偏右摩擦轮速度慢
   //shootTaskInit(&tet1,&tet2,&tet3,&tet4);//按照1、2、3、4发射顺序填入飞镖
-	shootTaskInit(&SJ,&PP,&NC,&NH);//按照1、2、3、4发射顺序填入飞镖
- // shootTaskInit(&GD,&HRL,&ZJ,&ZTX);//按照1、2、3、4发射顺序填入飞镖
-  //推杆电机和yaw电机初始化，方便限制电机动作
+	//shootTaskInit(&SJ,&PP,&NC,&NH);//按照1、2、3、4发射顺序填入飞镖
+  //shootTaskInit(&GD,&HRL,&ZJ,&ZTX);//按照1、2、3、4发射顺序填入飞镖
+  shootTaskInit(&HN,&ZJ,&ZTX,&ZTX);
+	//推杆电机和yaw电机初始化，方便限制电机动作
   while(!pushYawInit()){DWTRefreshTimeMs();//更新毫秒计时
     dartSysStateCheck();//各类限位状态查询
     checkControlMode();//遥控器选择控制模式
